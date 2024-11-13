@@ -1,0 +1,62 @@
+
+.Navbar {
+    height: 130px;
+    width: auto;
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+    justify-content: space-between;
+    color: rgb(255, 255, 255);
+    background-color: rgba(74, 0, 92, 1);
+    align-items: center;
+
+}
+
+.navbarLogo {
+    width: 600px;
+    padding: 45px 60px;
+    letter-spacing: 0.5px;
+    margin-left: 20px;
+}
+
+.navbarSubtitle {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbarSections {
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    margin-right: 20px;
+
+}
+
+.navbarSections li {
+    display: inline-block;
+    padding: 0 12px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.donations {
+    padding: 10px 80px;
+    height: auto; 
+    line-height: 1.8;
+    border-radius: 4px;
+    border: none;
+    background-color: rgba(167, 167, 167, 1);
+    
+}
+
+.donations button {
+    height: auto;
+    line-height: 1.8;
+    border: none; 
+    background: none; 
+    color: inherit; 
+    font: inherit;
+    cursor: pointer; 
+    text-decoration: none; 
+    box-shadow: none; 
+    border-radius: 4px;
+}

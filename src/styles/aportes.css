@@ -1,0 +1,15 @@
+.aportesContainer {
+    width: 100%;
+    padding: 60px 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.aportesContainer  h1 {
+    margin-bottom: 50px;
+}
+
+.aportesContainer  p {
+    margin-bottom: 50px;
+}

@@ -1,0 +1,33 @@
+.footerContainer {
+    height: 350px;
+    width: auto;
+    color: rgb(255, 255, 255);
+    background-color: rgba(74, 0, 92, 1);
+    display: flex;
+    padding: 50px 80px;
+    justify-content: space-between;
+}
+
+.footerContainer li {
+    list-style: none; 
+}
+
+.footerContact {
+    width: 300px;
+}
+
+.footerContact li {
+    margin-bottom: 40px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.footerPages {
+    margin-right: 150px;
+}
+
+.footerPages li {
+    margin-bottom: 40px;
+    font-size: 18px;
+    font-weight: 500;
+}

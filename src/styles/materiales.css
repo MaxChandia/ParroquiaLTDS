@@ -1,0 +1,78 @@
+.materialesContainer {
+    width: 100%;
+    padding: 60px 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.materialesContainer h1 {
+    margin-bottom: 50px;
+}
+
+.materialesContainer p {
+    margin-bottom: 50px;
+}
+
+.materialesSection {
+    height: auto;
+    width: 100%;
+}
+
+.section {
+    height: 450px;
+    width: auto;
+    display: flex;
+}
+
+.imageSection {
+    width: 50%;
+}
+
+.descriptionSection {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.descriptionSection h2 {
+    padding: 40px 100px;
+    letter-spacing: 0.5px;
+}
+
+.descriptionSection p {
+    padding: 0px 100px;
+    width: 86%;
+}
+
+.materialButton {
+    background-color: rgba(209, 53, 0, 1);
+    border: 0;
+    width: 120px;
+    height: 30px;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 15px;
+    font-weight: 600;
+    margin: 40px 100px;
+    border-radius: 14px;
+}
+
+.materialesSection .section:nth-child(1) .descriptionSection {
+    background-color: rgba(185, 134, 3, 1);
+    color: white;
+}
+
+.materialesSection .section:nth-child(2) .descriptionSection {
+    background-color: white;
+}
+
+.materialesSection .section:nth-child(3) .descriptionSection {
+    background-color: rgba(63, 63, 63, 1);
+    color: white;
+}
+
+.materialesSection .section:nth-child(4) .descriptionSection {
+    background-color: white;
+}
