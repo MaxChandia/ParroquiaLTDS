@@ -115,13 +115,40 @@
     font-size: 18px;
     font-family: "Montserrat";
     border: none;
-    border-radius: 4px;
+    border-radius: 14px;
     cursor: pointer;
 }
 
 
+.noticiasLanding {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    padding: 20px;
+}
+
+.noticiasLanding h3 {
+    padding: 100px 100px;
+}
+
+
+.noticiasLanding button {
+    background-color: rgba(209, 53, 0, 1);
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: "Montserrat";
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    align-self: center;
+}
+
 .donacionLanding {
     height: 70vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -133,6 +160,7 @@
     color: white;
     padding: 50px;
     border-radius: 14px;
+    margin-left: 120px;
 }
 
 .donacionLandingContainer h3 {
@@ -141,4 +169,18 @@
 
 .donacionLandingContainer p:nth-child(2) {
     margin-bottom: 20px;
+}
+
+.donacionLandingImage {
+    padding: 50px;
+    height: 350px;
+    width: 600px;
+    border-radius: 14px;
+}
+
+.donacionLandingImage img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 14px;
 }

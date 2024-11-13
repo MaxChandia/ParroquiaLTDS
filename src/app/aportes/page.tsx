@@ -6,12 +6,23 @@ export default function Aportes() {
   return (
       <div>
         <Navbar/>
-        <div className="aportesContainer " style={{height:"370px"}}>
+        <div className="aportesContainer ">
         <h1>Aportes</h1>
           <div>
             <p>Inicio | Aportes</p>
           </div>
         </div>
+          <div className="aportesContainerImage">
+            <img src="/images/misa.jpg"/>
+            <div className="aportesDetalles">
+              <h2>La caridad de Cristo</h2>
+              <p>Tu aporte nos ayuda a seguir creciendo</p>
+              <p>Banco Santander</p>
+              <p>cuenta cte. N°3339505924</p>
+              <p>Rut 81.735.106-9 </p>
+              <p>email: tuparroquiainforma@gmail.com</p>
+            </div>
+          </div>
         <Footer/>
       </div>
   );

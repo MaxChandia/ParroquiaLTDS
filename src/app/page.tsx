@@ -13,8 +13,10 @@ export default function Home() {
       <div>
         <div className={`NavbarHome ${montserrat.className}`}>
           <div className="navbarLogo">
-              <p className="navbarSubtitle">Parroquia</p>
-              <p className="navbarSubtitle">La Transfiguración del Señor</p>
+            <Link href="/">
+                <p className="navbarSubtitle">Parroquia</p>
+                <p className="navbarSubtitle">La Transfiguración del Señor</p>
+              </Link>
           <div/>
           </div>
           <div className="navbarSections">
@@ -50,10 +52,14 @@ export default function Home() {
       </div>
       <section className="parroquiaInfo">
           <img src="/images/misalanding.jpg"/>
-          <button>Conoce nuestra iglesia</button>
+          <button><Link href="/nuestraparroquia">Conoce nuestra iglesia</Link></button>
       </section>
-        <section>
+        <section className="noticiasLanding">
           <h3>Novedades Parroquiales</h3>
+          <div className="noticiasCard"></div>
+          <div className="noticiasCard"></div>
+          <div className="noticiasCard"></div>
+          <button><Link href='/noticias'>Ver más noticias</Link></button>
         </section>
         <section className="donacionLanding">
           <div className="donacionLandingContainer">
@@ -64,8 +70,8 @@ export default function Home() {
             <p>Rut 81.735.106-9 </p>
             <p>email: tuparroquiainforma@gmail.com</p>
           </div>
-          <div>
-            <img/>
+          <div className="donacionLandingImage">
+            <img src="/images/logo1.jpg"/>
           </div>
         </section>
         <Footer/>

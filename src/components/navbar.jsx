@@ -12,8 +12,10 @@ const Navbar = () => {
   return (
     <div className={`Navbar ${montserrat.className}`}>
           <div className="navbarLogo">
-              <p className="navbarSubtitle">Parroquia</p>
-              <p className="navbarSubtitle">La Transfiguración del Señor</p>
+          <Link href="/">
+                <p className="navbarSubtitle">Parroquia</p>
+                <p className="navbarSubtitle">La Transfiguración del Señor</p>
+              </Link>
           <div/>
           </div>
           <div className="navbarSections">
