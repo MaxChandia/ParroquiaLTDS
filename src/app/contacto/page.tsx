@@ -1,5 +1,6 @@
 import Navbar from "@/src/components/navbar.jsx";
 import Footer from "@/src/components/footer";
+import Link from "next/link";
 import "../../styles/contacto.css"
 
 export default function Contacto() {
@@ -9,7 +10,7 @@ export default function Contacto() {
         <div className="contactoContainer">
           <h1>Contacto</h1>
           <div>
-            <p>Inicio | Contacto</p>
+            <p className="contactoLink"><Link href="/">Inicio</Link> | Contacto</p>
           </div>
           <div className="contactoSection">
             <div className="contactoInformacion">

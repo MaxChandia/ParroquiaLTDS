@@ -86,3 +86,30 @@
     margin: 20px 0px;
     border-radius: 14px;
 }
+
+@media (max-width: 1024px) {
+
+    .contactoLink {
+        font-size: 13px;
+        width: 100%;
+        white-space: nowrap;
+    }
+
+    .contactoSection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .contactoInformacion {
+        width: 95%;
+        font-size: 15px;
+    }
+
+    .contactoFormulario {
+        width: auto;
+    }
+
+
+}

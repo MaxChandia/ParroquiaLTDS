@@ -1,5 +1,6 @@
 import Navbar from "@/src/components/navbar.jsx";
 import Footer from "@/src/components/footer";
+import Link from "next/link";
 import "../../styles/aportes.css"
 
 export default function Aportes() {
@@ -9,7 +10,7 @@ export default function Aportes() {
         <div className="aportesContainer ">
         <h1>Aportes</h1>
           <div>
-            <p>Inicio | Aportes</p>
+            <p><Link href="/">Inicio</Link> | Aportes</p>
           </div>
         </div>
           <div className="aportesContainerImage">

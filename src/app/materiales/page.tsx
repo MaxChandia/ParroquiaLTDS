@@ -1,15 +1,16 @@
 import Navbar from "@/src/components/navbar.jsx";
 import Footer from "@/src/components/footer";
+import Link from "next/link";
 import '../../styles/materiales.css'
 
 export default function Materiales() {
   return (
-      <div>
+      <div className="materiales">
         <Navbar/>
         <div className="materialesContainer" style={{height:"370px"}}>
           <h1>Materiales</h1>
           <div>
-            <p>Inicio | Materiales</p>
+            <p><Link href="/">Inicio</Link> | Materiales</p>
           </div>
           <p>Es fundamental que podamos crecer en el conocimiento de Dios, por medio de las escrituras y también del magisterio, así como de tanta lectura complementaria,
              que nos aporta para profundizar en mi relación y amistad con Dios.</p>

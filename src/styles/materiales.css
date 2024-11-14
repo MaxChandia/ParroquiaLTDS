@@ -1,9 +1,10 @@
 .materialesContainer {
     width: 100%;
-    padding: 60px 200px;
+    padding: 60px 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .materialesContainer h1 {
@@ -76,3 +77,85 @@
 .materialesSection .section:nth-child(4) .descriptionSection {
     background-color: white;
 }
+
+@media (max-width:1024px) {
+
+    .materiales {
+        height: auto;
+    }
+
+    .materialesContainer {
+        display: flex;
+        padding: 20px 40px;
+        text-align: justify;
+    }
+
+    
+    .materialesSection {
+        height: auto;
+    }
+
+    .materialesSection .section:nth-child(1) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column-reverse;
+        width: 100%;
+        height: auto;
+    }
+
+    .materialesSection .section:nth-child(2) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+
+
+    .materialesSection .section:nth-child(3) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column-reverse;
+        width: 100%;
+        height: auto;
+    }
+
+    .materialesSection .section:nth-child(4) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+
+
+    .imageSection {
+        width: 100%;
+        height: auto;
+    }
+
+    .descriptionSection {
+        width: 100%;
+        height: auto;
+    }
+
+    .descriptionSection p {
+        width: 100%;
+        height: auto;
+        font-size: 15px;
+        padding: 20px 50px;
+    }
+
+    .descriptionSection h2 {
+        padding: 0px 50px;
+        margin-top: 40px;
+    }
+
+    .descriptionSection button {
+        margin: 30px 50px;
+    }
+}   
