@@ -32,3 +32,31 @@
     font-size: 18px;
     font-weight: 500;
 }
+
+@media (max-width:1024px) {
+    .footerContainer {
+
+        height: auto;
+        width: auto;
+        color: rgb(255, 255, 255);
+        background-color: rgba(74, 0, 92, 1);
+        display: flex;
+        padding: 50px 0px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 60px;
+    }
+
+    .footerContact li {
+        margin-bottom: 30px;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    .footerPages li {
+        margin-bottom: 30px;
+        font-size: 18px;
+        font-weight: 500;
+    }
+}
