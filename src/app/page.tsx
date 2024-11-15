@@ -1,6 +1,8 @@
 import Link from "next/link.js";
 import Footer from "../components/footer.jsx"
+import Navbar from "../components/navbar.jsx";
 import "../styles/home.css"
+import "../styles/navbar.css"
 import { Montserrat } from 'next/font/google';
 
 const montserrat = Montserrat({
@@ -12,16 +14,16 @@ export default function Home() {
   return (
       <div>
         <div className={`NavbarHome ${montserrat.className}`}>
-          <div className="navbarLogo">
+          <div className="navbarHomeLogo">
             <Link href="/">
-                <p className="navbarSubtitle">Parroquia</p>
-                <p className="navbarSubtitle">La Transfiguración del Señor</p>
+                <p className="navbarHomeSubtitle">Parroquia</p>
+                <p className="navbarHomeSubtitle">La Transfiguración del Señor</p>
               </Link>
           <div/>
           </div>
-          <div className="navbarSections">
+          <div className="navbarHomeSections">
             <input type="checkbox" id="check" />
-            <label htmlFor="check" className="icons">---</label>
+            <label htmlFor="check" className="iconsHome">---</label>
             <ul>
               <li><Link href="/">INICIO</Link></li>
               <li><Link href="/nuestraparroquia">NUESTRA PARROQUiA</Link></li>
@@ -36,7 +38,7 @@ export default function Home() {
         <img src="/images/parroquialanding.jpg"/>
       </div>
       <div className="misasInformacion">
-        <div>
+        <div className="misasInformacionContainer">
           <h2>Misas</h2>
           <p>Martes a Sábado: 20:00</p>
           <p>Domigos 12:00 y 20:00</p>

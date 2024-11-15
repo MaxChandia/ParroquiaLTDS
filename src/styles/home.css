@@ -1,3 +1,6 @@
+.navbarHomeMedia {
+    display: none;
+}
 
 .NavbarHome {
     position: absolute;
@@ -11,32 +14,41 @@
 
 }
 
-.navbarLogo {
+.navbarHomeLogo {
     width: 600px;
     padding: 45px 60px;
     letter-spacing: 0.5px;
     margin-left: 20px;
 }
 
-.navbarSubtitle {
+.navbarHomeSubtitle {
     font-size: 20px;
     font-weight: bold;
 }
 
-.navbarSections {
+.navbarHomeSections {
     width: 55%;
     display: flex;
     justify-content: center;
-    margin-left: 110px;
+    margin-left: 63px;
 
 }
 
-.navbarSections li {
+.navbarHomeSections li {
     display: inline-block;
     padding: 0 12px;
     font-size: 16px;
     font-weight: 500;
 }
+
+.navbarHomeSections input {
+    display: none;
+}
+
+.iconsHome {
+    display: none;
+}
+
 
 .donations {
     padding: 10px 80px;
@@ -96,12 +108,15 @@
     width: 100%;
     display: block;
     align-items: center;
+    
 }
 
 .parroquiaInfo img {
     height: auto;
     width: 100%;
     padding: 0px 100px;
+   
+    
 }
 
 .parroquiaInfo button {
@@ -185,37 +200,31 @@
     border-radius: 14px;
 }
 
-.navbarSections input {
-    display: none;
-}
-
-.icons {
-    display: none;
-}
-
-
-@media (max-width: 1024px) {
+@media (max-width:1024px) {
     .NavbarHome {
         width: 100%;
+        display: flex;
+        justify-content: space-between;
     }
 
-    .navbarLogo{
+    .navbarHomeLogo{
+        font-size: 10px;
         width: auto;
-        padding: 10px;
+        padding: 30px;
         white-space: nowrap;
     }
 
-    .navbarLogo p {
-        font-size: 12px;
+    .navbarHomeLogo p {
+        font-size: 13px;
     }
 
 
-    .navbarSections ul {
+    .navbarHomeSections ul {
         position: absolute;
-        top: 140%; 
+        top: 80%; 
         left: 0;
         width: 100%;
-        background-color: rgb(30, 22, 85);
+        background-color: rgba(44, 71, 126, 1);
         height: 0;
         overflow: hidden;
         transition: height 0.5s ease-in-out;
@@ -225,13 +234,14 @@
         align-items: center;
     }
 
-    .navbarSections li {
-        padding: 12px;
+    .navbarHomeSections li {
+        padding: 10px;
     }
 
-    .icons {
+    .iconsHome {
         display: flex;
         color: white;
+        margin-right: 20px;
     }
 
     #check:checked ~ ul {
@@ -239,19 +249,91 @@
     }
 
     .homeImage {
-        height: 180px;
+        width: 100%;
     }
+    
+    .homeImage img {
+        height: 80vh;
+
+      }
 
     .misasInformacion {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-size: 15px;
+        gap: 50px;
+    }
+
+    .misasInformacion h2 {
+        font-size: 17px;
+        margin-bottom: 15px;
+    }
+
+    .misasInformacion p {
+        font-size: 15px;
+    }
+
+    .parroquiaInfo {
+        position: relative;
+        height: auto;
+        width: 100%;
+        display: block;
+        align-items: center;
+    }
+    
+    .parroquiaInfo img {
+        height: auto;
+        width: 100%;
+        padding: 0px;
+    }
+
+    .parroquiaInfo button {
+        top: 80%; 
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .noticiasLanding {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+        padding: 0px;
+        margin-bottom: 150px;
+    }
+
+    .donacionLanding {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        font-size: ;
     }
 
-    .misasInformacion p{
-        font-size:15px;
-
+    .donacionLandingContainer {
+        background-color:rgba(185, 134, 3, 1) ;
+        color: white;
+        padding: 50px;
+        border-radius: 14px;
+        margin: 0px
     }
+
+    .donacionLandingImage {
+        padding: 30px 20px 80px 20px;
+        height: auto;
+        width: auto;
+        border-radius: 14px;
+    }
+    
+    .donacionLandingImage img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+    }
+
+
+
 }

@@ -83,11 +83,11 @@
         font-size: 10px;
         width: auto;
         padding: 30px;
+        white-space: nowrap;
     }
 
     .navbarLogo p {
-        font-size: 15px;
-        white-space: nowrap;
+        font-size: 13px;
     }
 
 
@@ -113,9 +113,12 @@
     .icons {
         display: flex;
         color: white;
+        justify-items: end;
     }
 
     #check:checked ~ ul {
         height: 300px;
     }
+
+    
 }
