@@ -8,6 +8,7 @@
     color: rgb(255, 255, 255);
     background-color: rgba(74, 0, 92, 1);
     align-items: center;
+    z-index: 1;
 
 }
 
@@ -80,12 +81,13 @@
 
     .navbarLogo{
         font-size: 10px;
-        width: 7000px;
+        width: auto;
         padding: 30px;
     }
 
     .navbarLogo p {
         font-size: 15px;
+        white-space: nowrap;
     }
 
 

@@ -20,6 +20,8 @@ export default function Home() {
           <div/>
           </div>
           <div className="navbarSections">
+            <input type="checkbox" id="check" />
+            <label htmlFor="check" className="icons">---</label>
             <ul>
               <li><Link href="/">INICIO</Link></li>
               <li><Link href="/nuestraparroquia">NUESTRA PARROQUiA</Link></li>

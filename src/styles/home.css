@@ -184,3 +184,74 @@
     object-fit: cover;
     border-radius: 14px;
 }
+
+.navbarSections input {
+    display: none;
+}
+
+.icons {
+    display: none;
+}
+
+
+@media (max-width: 1024px) {
+    .NavbarHome {
+        width: 100%;
+    }
+
+    .navbarLogo{
+        width: auto;
+        padding: 10px;
+        white-space: nowrap;
+    }
+
+    .navbarLogo p {
+        font-size: 12px;
+    }
+
+
+    .navbarSections ul {
+        position: absolute;
+        top: 140%; 
+        left: 0;
+        width: 100%;
+        background-color: rgb(30, 22, 85);
+        height: 0;
+        overflow: hidden;
+        transition: height 0.5s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        align-items: center;
+    }
+
+    .navbarSections li {
+        padding: 12px;
+    }
+
+    .icons {
+        display: flex;
+        color: white;
+    }
+
+    #check:checked ~ ul {
+        height: 300px;
+    }
+
+    .homeImage {
+        height: 180px;
+    }
+
+    .misasInformacion {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: ;
+    }
+
+    .misasInformacion p{
+        font-size:15px;
+
+    }
+}

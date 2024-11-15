@@ -1,5 +1,5 @@
 .aportesContainer {
-    position: relative;
+    height: auto;
     width: 100%;
     padding: 60px 200px;
     display: flex;
@@ -53,6 +53,11 @@
 }
 
 @media (max-width: 1024px) {
+
+    .aportesContainer {
+        position: relative;
+    }
+
     .aportesContainer p {
         font-size: 13px;
         width: 100px;
@@ -68,7 +73,7 @@
     .aportesDetalles {
         position: absolute;
         background-color: white;
-        height: 400px;
+        height: 300px;
         width: 350px;
         border-radius: 14px;
         left: 50%; 
