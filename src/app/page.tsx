@@ -1,6 +1,5 @@
 import Link from "next/link.js";
 import Footer from "../components/footer.jsx"
-import Navbar from "../components/navbar.jsx";
 import "../styles/home.css"
 import "../styles/navbar.css"
 import { Montserrat } from 'next/font/google';
