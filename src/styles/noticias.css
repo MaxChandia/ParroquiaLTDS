@@ -13,3 +13,9 @@
 .noticiasContainer p {
     margin-bottom: 50px;
 }
+
+@media (max-width:1024px) {
+    .noticiasContainer {
+        padding: 60px 100px;
+    }
+}

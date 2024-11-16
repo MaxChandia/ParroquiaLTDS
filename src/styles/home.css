@@ -250,12 +250,15 @@
 
     .homeImage {
         width: 100%;
+        overflow: none;
     }
     
     .homeImage img {
         height: 80vh;
-
-      }
+        width: 150%;
+        object-fit: cover;
+        object-position: right center;
+    }
 
     .misasInformacion {
         display: flex;

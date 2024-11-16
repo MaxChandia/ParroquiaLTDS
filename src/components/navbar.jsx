@@ -1,6 +1,7 @@
 import "../styles/navbar.css"
 import { Montserrat } from 'next/font/google';
 import Link from "next/link";
+import { FaBars } from 'react-icons/fa';
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -20,7 +21,7 @@ const Navbar = () => {
           </div>
           <div className="navbarSections">
             <input type="checkbox" id="check" />
-            <label htmlFor="check" className="icons">---</label>
+            <label htmlFor="check" className="icons"> <FaBars /></label>
             <ul>
               <li><Link href="/">INICIO</Link></li>
               <li><Link href="/nuestraparroquia">NUESTRA PARROQUiA</Link></li>

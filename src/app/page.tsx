@@ -3,6 +3,7 @@ import Footer from "../components/footer.jsx"
 import "../styles/home.css"
 import "../styles/navbar.css"
 import { Montserrat } from 'next/font/google';
+import { FaBars } from 'react-icons/fa';
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -22,7 +23,7 @@ export default function Home() {
           </div>
           <div className="navbarHomeSections">
             <input type="checkbox" id="check" />
-            <label htmlFor="check" className="iconsHome">---</label>
+            <label htmlFor="check" className="iconsHome"> <FaBars /></label>
             <ul>
               <li><Link href="/">INICIO</Link></li>
               <li><Link href="/nuestraparroquia">NUESTRA PARROQUiA</Link></li>
