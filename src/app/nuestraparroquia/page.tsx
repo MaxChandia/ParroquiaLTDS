@@ -7,10 +7,9 @@ import '../../styles/parroquia.css';
 export default function Parroquia() {
 
   const Slides = [
-    {id:1,src:"/images/parro1.jpg",alt:""},
-    {id:2,src:"/images/parro2.jpg",alt:""},
-    {id:3,src:"/images/parro3.jpg",alt:""},
-    {id:4,src:"",alt:""}
+    {id:1,src:"/images/parro1.jpg",alt:"parroquia-1"},
+    {id:2,src:"/images/parro2.jpg",alt:"parroquia-2"},
+    {id:3,src:"/images/parro3.jpg",alt:"parroquia-3"},
   ];
 
   return (
