@@ -1,5 +1,6 @@
 import '../styles/footer.css'
 import Link from 'next/link'
+import { FaEnvelope, FaPhone } from 'react-icons/fa';
 
 const Footer = () => {
     return(
@@ -10,9 +11,10 @@ const Footer = () => {
             </div>
             <div>
                 <ul className='footerContact'>
-                    <li>Teléfono: (55) 22606216
-                    tuparroquiainforma@gmail.com</li>
-                    <li>Antilhue 01991, Antofagasta
+                    <li><FaPhone/> +56 552 606216
+                    </li>
+                    <li><FaEnvelope/> tuparroquiainforma@gmail.com</li>
+                    <li>Antilhue 01991, Antofagasta,
                     Chile</li>
                 </ul>
             </div>

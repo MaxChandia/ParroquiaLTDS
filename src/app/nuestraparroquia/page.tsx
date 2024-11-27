@@ -5,6 +5,14 @@ import '../../styles/parroquia.css';
 
 
 export default function Parroquia() {
+
+  const Slides = [
+    {id:1,src:"/images/parro1.jpg",alt:""},
+    {id:2,src:"/images/parro2.jpg",alt:""},
+    {id:3,src:"/images/parro3.jpg",alt:""},
+    {id:4,src:"",alt:""}
+  ];
+
   return (
       <div>
         <Navbar/>
@@ -15,6 +23,11 @@ export default function Parroquia() {
           </div>
           <p>Somos una comunidad que busca acercarse a Dios, aprender de su hijo, y volverse misionera buscando vivir de su palabra, acompañados siempre del Espíritu Santo. Estamos ubicados en el sector sur de la ciudad de Antofagasta y estamos al servicio de la comunidad, entregando lo necesario para vivir y acrecentar la fe.</p>
           <p><b>Hay espacio para todos en la casa de Dios</b></p>
+          <div className="parroquiaFotos">
+            {Slides.map((slide,index)=>(
+              <img key={slide.id} src={slide.src} alt={slide.alt}/>
+            ))}
+          </div>
         </div>
         <Footer/>
       </div>

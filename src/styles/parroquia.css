@@ -22,6 +22,19 @@
     margin-bottom: 50px;
 }
 
+.parroquiaFotos {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    width: 75%;
+    gap: 20px;
+}
+
+.parroquiaFotos img {
+    width: 50%;
+    height: auto;
+}
+
 @media (max-width:1024px) {
 
     .parroquiaContainer {

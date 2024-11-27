@@ -5,7 +5,7 @@
 .NavbarHome {
     position: absolute;
     height: 130px;
-    width: auto;
+    width: 100%;
     display: flex;
     font-family: 'Montserrat', sans-serif;
     justify-content: space-between;
@@ -27,10 +27,10 @@
 }
 
 .navbarHomeSections {
-    width: 55%;
+    width: 100%;
     display: flex;
-    justify-content: center;
-    margin-left: 63px;
+    justify-content: flex-end;
+    margin-right: 60px;
 
 }
 
@@ -205,6 +205,7 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
+        
     }
 
     .navbarHomeLogo{
@@ -216,6 +217,11 @@
 
     .navbarHomeLogo p {
         font-size: 13px;
+    }
+
+    .navbarHomeSections {
+        margin-right: 20px;
+    
     }
 
 
@@ -241,7 +247,7 @@
     .iconsHome {
         display: flex;
         color: white;
-        margin-right: 20px;
+        justify-content: flex-end;
     }
 
     #check:checked ~ ul {

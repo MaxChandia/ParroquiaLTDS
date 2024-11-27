@@ -25,9 +25,9 @@
 }
 
 .navbarSections {
-    width: 55%;
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     margin-right: 60px;
 
 }
@@ -90,6 +90,12 @@
         font-size: 13px;
     }
 
+    .navbarSections {
+        margin-right: 20px;
+    
+    }
+
+
 
     .navbarSections ul {
         position: absolute;
@@ -113,7 +119,7 @@
     .icons {
         display: flex;
         color: white;
-        justify-items: end;
+        justify-content: flex-end;
     }
 
     #check:checked ~ ul {
