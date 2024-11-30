@@ -17,15 +17,6 @@ export const authOptions = {
   session: {
     strategy: "jwt", // Usa "database" si deseas almacenar sesiones en la base de datos
   },
-  callbacks: {
-    // Define tus callbacks personalizados si es necesario
-    async session({ session, token, user }) {
-      return session;
-    },
-    async signIn({ user, account, profile }) {
-      return true; // Permite iniciar sesión
-    },
-  },
 };
 
 export default NextAuth(authOptions);
