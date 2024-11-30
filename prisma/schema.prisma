@@ -1,0 +1,20 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL") // La URL de tu base de datos MongoDB
+}
+
+model User {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  user     String @unique
+  password String
+  posts    Post[] @relation("UserPosts")
+}
+
+model Post {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  author    User     @relation("UserPosts", fields: [authorId], references: [id])
+  authorId  String
+}

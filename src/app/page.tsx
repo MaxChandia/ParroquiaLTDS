@@ -1,9 +1,12 @@
+"use client";
+
 import Link from "next/link.js";
 import Footer from "../components/footer.jsx"
 import "../styles/home.css"
 import "../styles/navbar.css"
 import { Montserrat } from 'next/font/google';
 import { FaBars } from 'react-icons/fa';
+import { useState, useEffect } from "react";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -11,6 +14,21 @@ const montserrat = Montserrat({
 });
 
 export default function Home() {
+  const [news, setNews] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async() => {
+      try {
+        const response = await fetch("/api/getNews");
+        const data = await response.json();
+        setNews(data);
+      } catch (error) {
+        console.error ("hubo un error", error);
+      }
+    }; fetchData();
+  }, []);
+      
+
   return (
       <div>
         <div className={`NavbarHome ${montserrat.className}`}>
@@ -59,10 +77,21 @@ export default function Home() {
           <button><Link href="/nuestraparroquia">Conoce nuestra iglesia</Link></button>
       </section>
         <section className="noticiasLanding">
-          <h3>Novedades Parroquiales</h3>
-          <div className="noticiasCard"></div>
-          <div className="noticiasCard"></div>
-          <div className="noticiasCard"></div>
+          <h2>Novedades Parroquiales</h2>
+          <div className="noticiasList">
+          {news.length > 0 ? (
+            news.map((noticia) => (
+              <div className="noticiaItem" key={noticia.id}>
+                <img alt="nota1"/>
+                <h3>{noticia.title}</h3>
+                <p>{new Date(noticia.createdAt).toLocaleDateString()}</p>
+                <button>Leer más</button>
+              </div>
+            ))
+          ) : (
+            <p>No hay noticias disponibles.</p>
+          )}
+        </div>
           <button><Link href='/noticias'>Ver más noticias</Link></button>
         </section>
         <section className="donacionLanding">
