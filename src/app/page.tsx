@@ -14,7 +14,14 @@ const montserrat = Montserrat({
 });
 
 export default function Home() {
-  const [news, setNews] = useState([]);
+  const [news, setNews] = useState<Noticia[]>([]);;
+
+  interface Noticia {
+    id: number;
+    title: string;
+    createdAt: string;
+    // Agrega otros campos necesarios, como el contenido, autor, etc.
+  }
 
   useEffect(() => {
     const fetchData = async() => {
