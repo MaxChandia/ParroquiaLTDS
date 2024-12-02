@@ -5,9 +5,10 @@ import { FaEnvelope, FaPhone } from 'react-icons/fa';
 const Footer = () => {
     return(
         <div className='footerContainer'>
-            <div>
-            <p className="navbarSubtitle">Parroquia</p>
-            <p className="navbarSubtitle">La Transfiguración del Señor</p>
+            <div> <Link href="/">
+                <p className="navbarSubtitle">Parroquia</p>
+                <p className="navbarSubtitle">La Transfiguración del Señor</p>
+                </Link>
             </div>
             <div>
                 <ul className='footerContact'>

@@ -46,4 +46,19 @@
     .parroquiaContainer h1 {
         text-align: center;
     }
+
+    .parroquiaFotos {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .parroquiaFotos img {
+        width: 100%;
+        height: auto;
+    }
 }

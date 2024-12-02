@@ -86,19 +86,21 @@ export default function Home() {
         <section className="noticiasLanding">
           <h2>Novedades Parroquiales</h2>
           <div className="noticiasList">
-          {news.length > 0 ? (
-            news.map((noticia) => (
-              <div className="noticiaItem" key={noticia.id}>
-                <img alt="nota1"/>
-                <h3>{noticia.title}</h3>
-                <p>{new Date(noticia.createdAt).toLocaleDateString()}</p>
-                <button>Leer más</button>
-              </div>
-            ))
-          ) : (
-            <p>No hay noticias disponibles.</p>
-          )}
-        </div>
+            {news.length > 0 ? (
+              news.slice(0, 3).map((noticia) => (
+                <div className="noticiaItem" key={noticia.id}>
+                  <img alt="nota1"/>
+                  <h3>{noticia.title}</h3>
+                  <p>{new Date(noticia.createdAt).toLocaleDateString()}</p>
+                  <button>
+                    <Link href={`/noticias/${noticia.id}`}>Leer más</Link>
+                  </button>
+                </div>
+              ))
+            ) : (
+              <p>No hay noticias disponibles.</p>
+            )}
+          </div>
           <button><Link href='/noticias'>Ver más noticias</Link></button>
         </section>
         <section className="donacionLanding">
