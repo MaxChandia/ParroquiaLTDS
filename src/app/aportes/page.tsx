@@ -20,8 +20,8 @@ export default function Aportes() {
               <p>Tu aporte nos ayuda a seguir creciendo</p>
               <p>Banco Santander</p>
               <p>cuenta cte. N°3339505924</p>
-              <p>Rut 81.735.106-9 </p>
-              <p>email: tuparroquiainforma@gmail.com</p>
+              <p>Rut 81.735.106-9</p>
+              <p>tuparroquiainforma@gmail.com</p>
             </div>
           </div>
         <Footer/>

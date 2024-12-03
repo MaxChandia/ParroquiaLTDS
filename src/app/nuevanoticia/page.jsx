@@ -15,36 +15,7 @@ export default function NewEntry() {
       return;
     }
 
-    setIsLoading(true);
-    try {
-      const formData = new FormData();
-      formData.append("title", title);
-      formData.append("content", body);
-      if (image) formData.append("image", image);
-
-      const response = await fetch("/api/posts", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        const errorMessage = await response.text();
-        console.error("Error del servidor:", errorMessage);
-        alert(`Error al crear el post: ${response.statusText}`);
-        return;
-      }
-
-      const data = await response.json();
-      alert("Post creado exitosamente");
-      setTitle("");
-      setBody("");
-      setImage(null);
-    } catch (error) {
-      console.error("Error de red o cliente:", error);
-      alert("No se pudo conectar con el servidor. Inténtalo más tarde.");
-    } finally {
-      setIsLoading(false);
-    }
+    
   }
 
   return (
