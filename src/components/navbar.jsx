@@ -24,7 +24,12 @@ const Navbar = () => {
             <label htmlFor="check" className="icons"> <FaBars /></label>
             <ul>
               <li><Link href="/">INICIO</Link></li>
-              <li><Link href="/nuestraparroquia">NUESTRA PARROQUiA</Link></li>
+              <li className="dropdown">
+                <Link href="/nuestraparroquia">NUESTRA PARROQUIA ▾</Link>
+                <ul className="dropdown-menu">
+                  <li><Link href="/nuestraparroquia/pastores">PASTORES</Link></li>
+                </ul>
+              </li>
               <li><Link href="/noticias">NOTICIAS</Link></li>
               <li><Link href="/materiales">MATERIALES</Link></li>
               <li><Link href="/contacto">CONTACTO</Link></li>

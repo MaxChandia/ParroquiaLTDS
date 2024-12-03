@@ -20,7 +20,8 @@ export default function Home() {
     id: number;
     title: string;
     createdAt: string;
-    // Agrega otros campos necesarios, como el contenido, autor, etc.
+    imageUrl: string;
+    slug: string;
   }
 
   useEffect(() => {
@@ -51,7 +52,12 @@ export default function Home() {
             <label htmlFor="check" className="iconsHome"> <FaBars /></label>
             <ul>
               <li><Link href="/">INICIO</Link></li>
-              <li><Link href="/nuestraparroquia">NUESTRA PARROQUiA</Link></li>
+              <li className="dropdownHome">
+                <Link href="/nuestraparroquia">NUESTRA PARROQUIA ▾</Link>
+                <Link href="/nuestraparroquia/pastores"><ul className="dropdown-menuHome">
+                  <li>PASTORES</li>
+                </ul></Link>
+              </li>
               <li><Link href="/noticias">NOTICIAS</Link></li>
               <li><Link href="/materiales">MATERIALES</Link></li>
               <li><Link href="/contacto">CONTACTO</Link></li>
@@ -89,11 +95,11 @@ export default function Home() {
             {news.length > 0 ? (
               news.slice(0, 3).map((noticia) => (
                 <div className="noticiaItem" key={noticia.id}>
-                  <img alt="nota1"/>
+                  <img src={noticia.imageUrl || 'default-image.jpg'} alt={`Imagen de ${noticia.title}`} />
                   <h3>{noticia.title}</h3>
                   <p>{new Date(noticia.createdAt).toLocaleDateString()}</p>
                   <button>
-                    <Link href={`/noticias/${noticia.id}`}>Leer más</Link>
+                    <Link href={`/noticias/${noticia.slug}`}>Leer más</Link>
                   </button>
                 </div>
               ))

@@ -1,25 +1,26 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import "../../styles/login.css";
 
 export default function Login() {
-  // Manejar los valores de las entradas
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
-  // Función para manejar el inicio de sesión
   function handleLogin() {
     fetch("/api/loginUser", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user, password }), // Asegúrate de que esto contenga los valores correctos
+      body: JSON.stringify({ user, password }),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.user) {
+          localStorage.setItem("token", data.token); // Guardar el token de sesión
           alert("Login exitoso");
-          // Aquí puedes redirigir al usuario o guardar la sesión
+          router.push("/nuevanoticia");
         } else {
           alert("Credenciales incorrectas");
         }
@@ -35,16 +36,16 @@ export default function Login() {
           type="user"
           placeholder="Cuenta"
           value={user}
-          onChange={(e) => setUser(e.target.value)} // Actualiza el estado del email
+          onChange={(e) => setUser(e.target.value)}
         />
         <input
           type="password"
           placeholder="Contraseña"
           value={password}
-          onChange={(e) => setPassword(e.target.value)} // Actualiza el estado de la contraseña
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button onClick={handleLogin}>Ingresar</button> {/* Ejecuta handleLogin al hacer clic */}
+      <button onClick={handleLogin}>Ingresar</button>
     </div>
   );
 }

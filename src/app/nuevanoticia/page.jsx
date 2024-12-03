@@ -1,11 +1,13 @@
 "use client";
+
 import React, { useState } from "react";
 import "../../styles/nuevanoticia.css";
 
 export default function NewEntry() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // Para mostrar feedback de carga
+  const [image, setImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handlePost() {
     if (!title || !body) {
@@ -13,18 +15,19 @@ export default function NewEntry() {
       return;
     }
 
-    setIsLoading(true); // Activamos el estado de carga
+    setIsLoading(true);
     try {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("content", body);
+      if (image) formData.append("image", image);
+
       const response = await fetch("/api/posts", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title, content: body }),
+        body: formData,
       });
 
       if (!response.ok) {
-        // Si el servidor devuelve un error
         const errorMessage = await response.text();
         console.error("Error del servidor:", errorMessage);
         alert(`Error al crear el post: ${response.statusText}`);
@@ -32,18 +35,15 @@ export default function NewEntry() {
       }
 
       const data = await response.json();
-      if (data.success) {
-        alert("Post creado exitosamente");
-        setTitle(""); // Limpiamos el formulario
-        setBody("");
-      } else {
-        alert("Ocurrió un error al crear el post.");
-      }
+      alert("Post creado exitosamente");
+      setTitle("");
+      setBody("");
+      setImage(null);
     } catch (error) {
       console.error("Error de red o cliente:", error);
       alert("No se pudo conectar con el servidor. Inténtalo más tarde.");
     } finally {
-      setIsLoading(false); // Desactivamos el estado de carga
+      setIsLoading(false);
     }
   }
 
@@ -64,6 +64,11 @@ export default function NewEntry() {
             value={body}
             onChange={(e) => setBody(e.target.value)}
           ></textarea>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
         </div>
         <div className="buttons">
           <button onClick={handlePost} disabled={isLoading}>
