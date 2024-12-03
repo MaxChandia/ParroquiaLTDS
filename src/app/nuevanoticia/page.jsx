@@ -6,17 +6,7 @@ import "../../styles/nuevanoticia.css";
 export default function NewEntry() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [image, setImage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  async function handlePost() {
-    if (!title || !body) {
-      alert("Por favor, completa todos los campos.");
-      return;
-    }
-
-    
-  }
+  
 
   return (
     <div className="nuevaNoticia">
