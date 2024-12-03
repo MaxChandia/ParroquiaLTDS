@@ -242,6 +242,7 @@
 
 .dropdownHome {
     position: relative;
+    cursor: pointer;
   }
   
   .dropdown-menuHome {
@@ -256,6 +257,7 @@
     padding: 0;
     margin:  0 10px;
     z-index: 1000;
+   
   }
   
   .dropdown-menuHome li {
@@ -269,11 +271,9 @@
     display: block;
   }
   
- 
-  .dropdownHome:hover .dropdown-menuHome {
-    display: block;
+  .navLogoQuery {
+    display: none;
   }
-  
 
 @media (max-width:1024px) {
     .NavbarHome {
@@ -302,7 +302,7 @@
 
     .navbarHomeSections ul {
         position: absolute;
-        top: 80%; 
+        top: 0; 
         left: 0;
         width: 100%;
         background-color: rgba(44, 71, 126, 1);
@@ -325,9 +325,51 @@
         justify-content: flex-end;
     }
 
-    #check:checked ~ ul {
-        height: 300px;
+    .iconsHomeNav {
+        padding: 10px;
+        display: flex;
+        color: white;
+        justify-content: flex-end;
     }
+
+
+
+    .navLogoQuery {
+        display: flex;
+        padding: 10px;
+        justify-content: space-between;
+        gap: 98px;
+        margin-top: 37px;
+        margin-left: 20px;
+        white-space: nowrap;
+    }
+    
+    .navLogoQuery p {
+        font-size: 14px;
+    }
+
+    #check:checked ~ .navbarHomeUl {
+        height: 400px;
+    }
+
+    .dropdownHome ul{
+        display: block; 
+        position: relative; 
+        margin: 0; 
+        height: 100px;
+        top: 0;
+        width: 100%; 
+        background-color: rgb(53, 12, 143); 
+        
+      }
+    
+      .dropdown-menuHome li {
+        text-align: center; 
+        padding: 5px;
+        margin-top: 10px;
+        width: 100%;
+        
+      }
 
     .homeImage {
         width: 100%;

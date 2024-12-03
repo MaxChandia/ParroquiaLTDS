@@ -33,7 +33,7 @@ export default function Materiales() {
                 <a href="/docs/Catecismo para nihos - Jose Maria Palomar Garces.pdf" className="materialButton">Descargar</a>
               </div>
               <div className="imageSection">
-              <img src="/images/biblia.jpg" alt="Description 2" />
+              <img src="/images/catequesis.jpg" alt="Description 2" />
               </div>
             </div>
             <div className="section">
@@ -43,7 +43,7 @@ export default function Materiales() {
               <div className="descriptionSection">
                 <h2>Derecho canónico </h2>
                 <p>Lo que nos permite ordenarnos al interior de la Iglesia y la comunidad, son la leyes de la Iglesia al servicio de los que aman al Señor. </p>
-                <a href="/docs/Bibilia-de-Jersualen.pdf" className="materialButton">Descargar</a>
+                <a href="/docs/CODIGO+DERECHO+CANONICO.pdf" className="materialButton">Descargar</a>
               </div>
             </div>
             <div className="section">

@@ -9,7 +9,7 @@
 }
 
 .autoridadesContainer h1 {
-    margin-bottom: 10px;
+    margin-bottom: 40px;
 }
 
 .autoridadesContainer p {
@@ -21,6 +21,7 @@
     align-items: center;
     justify-content: center;
     gap: 100px;
+    margin-left: 25px;
     margin-bottom: 100px;
 }
 
@@ -49,4 +50,23 @@
 
 .autoridadesCard p:nth-child(4) {
     font-style: italic;
+    font-size: 13px;
+
+}
+
+@media (max-width:1028px) {
+    .autoridadesParroquiales {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 100px;
+        margin-left: 0;
+        margin-bottom: 100px;
+        height: auto;
+    }
+
+    .autoridadesCard {
+        width: 50%;
+    }
 }

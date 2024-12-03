@@ -15,6 +15,11 @@ const montserrat = Montserrat({
 
 export default function Home() {
   const [news, setNews] = useState<Noticia[]>([]);;
+  const [dropdownOpen, setDropdownOpen] = useState (false);
+
+  const handleDropDown = () => {
+    setDropdownOpen((prev) => !prev)
+  }
 
   interface Noticia {
     id: number;
@@ -50,13 +55,22 @@ export default function Home() {
           <div className="navbarHomeSections">
             <input type="checkbox" id="check" />
             <label htmlFor="check" className="iconsHome"> <FaBars /></label>
-            <ul>
+            <ul className="navbarHomeUl">
+            <div className="navLogoQuery">
+              <Link href="/">
+                <p className="navbarHomeSubtitle">Parroquia</p>
+                <p className="navbarHomeSubtitle">La Transfiguración del Señor</p>
+              </Link>
+              <input type="checkbox" id="check" />
+              <label htmlFor="check" className="iconsHomeNav"> <FaBars /></label>
+            </div>
               <li><Link href="/">INICIO</Link></li>
-              <li className="dropdownHome">
-                <Link href="/nuestraparroquia">NUESTRA PARROQUIA ▾</Link>
-                <Link href="/nuestraparroquia/pastores"><ul className="dropdown-menuHome">
-                  <li>PASTORES</li>
-                </ul></Link>
+              <li className="dropdownHome" onClick={handleDropDown}>
+                  NUESTRA PARROQUIA ▾
+               <ul className="dropdown-menuHome" style={{display: dropdownOpen ? "block" : "none"}}>
+                  <li><Link href="/nuestraparroquia">COMUNIDAD</Link></li>
+                  <li> <Link href="/nuestraparroquia/pastores">PASTORES</Link></li>      
+                </ul>
               </li>
               <li><Link href="/noticias">NOTICIAS</Link></li>
               <li><Link href="/materiales">MATERIALES</Link></li>
