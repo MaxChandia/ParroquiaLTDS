@@ -1,0 +1,27 @@
+.body {
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+}
+
+.noticiaContainer {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 200px;
+}
+
+.noticiaContainer h1 {
+    margin-bottom: 20px;
+}
+
+.noticiaContainer p {
+    margin-bottom: 20px;
+}
+
+.noticiaContainer img {
+    height: 50%;
+    width: 50%;
+}

@@ -1,30 +1,39 @@
 import Navbar from '@/src/components/navbar';
 import Footer from '@/src/components/footer';
 import { PrismaClient } from '@prisma/client';
+import "../../../styles/noticia.css"
+
 const prisma = new PrismaClient();
+
+async function fetchNoticia(slug) {
+  // Encuentra la noticia usando el slug
+  const noticia = await prisma.post.findUnique({
+    where: { slug: slug },
+  });
+
+  return noticia;
+}
 
 export default async function Noticia({ params }) {
   const { slug } = params;
 
-  // Encuentra la noticia usando el slug
-  const noticia = await prisma.post.findUnique({
-    where: { slug: slug }, // Aquí buscamos por slug
-    include: { author: true },
-  });
+  // Traer la noticia usando la función asincrónica
+  const noticia = await fetchNoticia(slug);
 
+  // Si no se encuentra la noticia, muestra un mensaje de error
   if (!noticia) {
     return <p>No se encontró la noticia.</p>;
   }
 
-  // En este punto ya tenemos la noticia con todos los datos
   return (
     <div>
       <Navbar />
-      <h1>{noticia.title}</h1>
-      <p>{new Date(noticia.createdAt).toLocaleDateString()}</p>
-      <p>{noticia.content}</p>
-      <img src={noticia.imageUrl} alt={`Imagen de ${noticia.title}`} />
-      {noticia.author && <p>Autor: {noticia.author.user}</p>}
+      <div className='noticiaContainer'>
+        <h1>{noticia.title}</h1>
+        <p>Fecha: {new Date(noticia.createdAt).toLocaleDateString()}</p>
+        <p>{noticia.content}</p>
+        <img src={noticia.imageUrl} alt={`Imagen de ${noticia.title}`} />
+        </div>
       <Footer />
     </div>
   );
