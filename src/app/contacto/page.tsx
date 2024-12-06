@@ -1,9 +1,48 @@
 import Navbar from "@/src/components/navbar.jsx";
 import Footer from "@/src/components/footer";
+import emailjs from "emailjs-com";
 import Link from "next/link";
 import "../../styles/contacto.css"
+import { useState } from "react";
 
 export default function Contacto() {
+  const [contactInfo, setContactInfo] = useState({
+    nombre:"",
+    mail:"",
+    mensaje:""
+  });
+
+  const saveContactInfo = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setContactInfo({ ...contactInfo, [e.target.name]: e.target.value });
+  };
+  
+  const cleanContactInfo = (e: React.FormEvent) => {
+    e.preventDefault();
+
+  if (!contactInfo.nombre || !contactInfo.mail || !contactInfo.mensaje) {
+    alert("Todos los campos son obligatorios");
+    return;
+  }
+
+  emailjs.send(
+    '',
+    ''
+
+  )
+  .then((result: { text: string })=> {
+    console.log('Email enviado:', result.text)
+    alert("formulario enviado correctamente")
+    setContactInfo({
+      nombre: '',
+      mail: '',
+      mensaje: ''
+    });
+  }, (error: { text: string }) => {
+    console.log ("error al enviar el formulario", error.text);
+    alert("Error al enviar el formulario. Intente de nuevo");
+  });
+};
+
   return (
       <div>
         <Navbar/>
@@ -26,11 +65,11 @@ export default function Contacto() {
               <p>Domingo: 10:30 a 14:00 hrs.</p>
             </div>
             <div className="contactoFormulario">
-              <form>
-                <input placeholder="Nombre"></input>
-                <input placeholder="Correo"></input>
-                <textarea placeholder="Mensaje..."></textarea>
-                <button>Enviar</button>
+              <form onSubmit={cleanContactInfo}>
+                <input placeholder="Nombre" name="nombre" value={contactInfo.nombre} onChange={saveContactInfo}></input>
+                <input placeholder="Correo" name="mail" value={contactInfo.mail} onChange={saveContactInfo}></input>
+                <textarea placeholder="Mensaje..." name="mensaje" value={contactInfo.mensaje} onChange={saveContactInfo}></textarea>
+                <button type="submit">Enviar</button>
               </form>
             </div>
           </div>

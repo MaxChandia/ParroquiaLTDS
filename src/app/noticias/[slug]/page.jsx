@@ -6,7 +6,6 @@ import "../../../styles/noticia.css"
 const prisma = new PrismaClient();
 
 async function fetchNoticia(slug) {
-  // Encuentra la noticia usando el slug
   const noticia = await prisma.post.findUnique({
     where: { slug: slug },
   });
@@ -17,10 +16,8 @@ async function fetchNoticia(slug) {
 export default async function Noticia({ params }) {
   const { slug } = params;
 
-  // Traer la noticia usando la función asincrónica
   const noticia = await fetchNoticia(slug);
 
-  // Si no se encuentra la noticia, muestra un mensaje de error
   if (!noticia) {
     return <p>No se encontró la noticia.</p>;
   }

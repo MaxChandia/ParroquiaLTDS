@@ -24,6 +24,6 @@
       "@/lib/*": ["src/lib/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/nuevanoticia/page.jsx", "src/pages/api/route.ts", "src/**/*"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/nuevanoticia/page.tsx", "src/pages/api/route.ts", "src/**/*"],
   "exclude": ["node_modules"]
 }
