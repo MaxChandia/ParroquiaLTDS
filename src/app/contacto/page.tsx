@@ -27,9 +27,13 @@ export default function Contacto() {
   }
 
   emailjs.send(
-    '',
-    ''
-
+    'service_hdzmjsb',
+    'template_p4awnkq',{
+      from_name: contactInfo.nombre, 
+      message: contactInfo.mensaje, 
+      reply_to: contactInfo.mail,
+    },
+    'i5bpqOQH5kvoK7dZ5'
   )
   .then((result: { text: string })=> {
     console.log('Email enviado:', result.text)
