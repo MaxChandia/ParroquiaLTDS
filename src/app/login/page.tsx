@@ -29,23 +29,25 @@ export default function Login() {
   }
 
   return (
-    <div className="loginContainer">
-      <div className="loginText">
-        <p>Parroquia La Transfiguración del Señor</p>
-        <input
-          type="user"
-          placeholder="Cuenta"
-          value={user}
-          onChange={(e) => setUser(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+    <div className="loginPage">
+      <div className="loginContainer">
+        <div className="loginText">
+          <p>Parroquia La Transfiguración del Señor</p>
+          <input
+            type="user"
+            placeholder="Cuenta"
+            value={user}
+            onChange={(e) => setUser(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button onClick={handleLogin}>Ingresar</button>
       </div>
-      <button onClick={handleLogin}>Ingresar</button>
     </div>
   );
 }

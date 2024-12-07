@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import "../../styles/nuevanoticia.css";
+import "../../styles/nuevaNoticia.css";
 import { Editor } from "@tinymce/tinymce-react";
+import Navbar from "@/src/components/navbar";
+import Footer from "@/src/components/footer";
 
 interface Noticia {
   id: string;
@@ -115,7 +117,9 @@ export default function NewEntry() {
   };
 
   return (
-    <div className="nuevaNoticia">
+    <div >
+      <Navbar/>
+      <div className="nuevaNoticia">
       <div className="nuevaNoticiaContainer">
         <div className="noticiaText">
           <h2>Escribir nueva publicación</h2>
@@ -166,6 +170,8 @@ export default function NewEntry() {
           <p>No hay noticias</p>
         )}
       </div>
+      </div>
+      <Footer/>
     </div>
   );
 }

@@ -138,9 +138,10 @@
 .noticiasLanding {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     height: auto;
-    width: 100%;
+    max-width: 100%;    
     padding: 20px;
 }
 
