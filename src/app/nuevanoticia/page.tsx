@@ -69,7 +69,7 @@ export default function NewEntry() {
     fetchPost();
   }, []);
 
-  const handleEdit = async (id: string, updatedData: Partial<Noticia>) => {
+ /* const handleEdit = async (id: string, updatedData: Partial<Noticia>) => {
     try {
       const response = await fetch(`/api/posts/${id}`, {
         method: "PUT",
@@ -94,7 +94,7 @@ export default function NewEntry() {
       console.error("No se ha podido actualizar los datos", error);
       alert("Error al actualizar los datos");
     }
-  };
+  }; */
 
   const handleDelete = async (id: string) => {
     try {
