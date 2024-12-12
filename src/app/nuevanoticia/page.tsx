@@ -147,15 +147,6 @@ export default function NewEntry() {
     setImageUrls((prevUrls) => [...prevUrls, ...newImageUrls]); // Agregar las nuevas URLs al estado existente
   };
 
-  const handleEditorChange = (newValue: string) => {
-    if (typingTimeout.current) {
-      clearTimeout(typingTimeout.current);
-    }
-  
-    typingTimeout.current = setTimeout(() => {
-      setBody(newValue);  // Actualiza el estado después de un pequeño retraso
-    }, 500); // Ajusta el tiempo de espera (en milisegundos)
-  };
   
   return (
     <div >
