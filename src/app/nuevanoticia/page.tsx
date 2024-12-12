@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../../styles/nuevaNoticia.css";
 import { Editor } from "@tinymce/tinymce-react";
 import Navbar from "@/src/components/navbar";
@@ -12,19 +12,20 @@ interface Noticia {
   createdAt: string;
   content: string;
   slug: string;
-  imageUrl: string;
+  imageUrls: string;
 }
 
 export default function NewEntry() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [imageUrl, setImageUrl] = useState<string>(""); // Cambiado de image a imageUrl (para aceptar una URL directamente)
   const [isLoading, setIsLoading] = useState(false);
   const [getNews, setGetNews] = useState<Noticia[]>([]);
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const typingTimeout = useRef<any>(null);
 
   const handlePost = async () => {
     setIsLoading(true);
-
+  
     try {
       const response = await fetch("/api/posts", {
         method: "POST",
@@ -35,15 +36,15 @@ export default function NewEntry() {
           title,
           slug: title.toLowerCase().replace(/ /g, "-"),
           content: body,
-          imageUrl: imageUrl || null, 
-          authorId: "64bfcdd1f4f29b1234567890", 
+          imageUrls, // Enviar todas las URLs de las imágenes
+          authorId: "64bfcdd1f4f29b1234567890",
         }),
       });
-
+  
       if (!response.ok) {
         throw new Error("Error al publicar el post");
       }
-
+  
       const data = await response.json();
       console.log("Post creado con éxito:", data);
       alert("Post publicado correctamente");
@@ -54,7 +55,7 @@ export default function NewEntry() {
       setIsLoading(false);
       setTitle("");
       setBody("");
-      setImageUrl("");
+      setImageUrls([]);
     }
   };
 
@@ -116,6 +117,46 @@ export default function NewEntry() {
     }
   };
 
+  const handleImageUpload = async (files: FileList) => {
+    const newImageUrls: string[] = [];
+  
+    for (const file of Array.from(files)) {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "ml_default"); // Reemplaza con tu upload_preset
+  
+      try {
+        const response = await fetch(`https://api.cloudinary.com/v1_1/dqp4mnozy/image/upload`, {
+          method: "POST",
+          body: formData,
+        });
+  
+        if (!response.ok) {
+          throw new Error("Error al subir la imagen");
+        }
+  
+        const data = await response.json();
+        console.log("URL de la imagen subida:", data.secure_url);
+        newImageUrls.push(data.secure_url);
+      } catch (error) {
+        console.error("Error al cargar el archivo:", error);
+        alert("Error al cargar una imagen. Intenta nuevamente.");
+      }
+    }
+  
+    setImageUrls((prevUrls) => [...prevUrls, ...newImageUrls]); // Agregar las nuevas URLs al estado existente
+  };
+
+  const handleEditorChange = (newValue: string) => {
+    if (typingTimeout.current) {
+      clearTimeout(typingTimeout.current);
+    }
+  
+    typingTimeout.current = setTimeout(() => {
+      setBody(newValue);  // Actualiza el estado después de un pequeño retraso
+    }, 500); // Ajusta el tiempo de espera (en milisegundos)
+  };
+  
   return (
     <div >
       <Navbar/>
@@ -130,23 +171,28 @@ export default function NewEntry() {
             onChange={(e) => setTitle(e.target.value)}
           />
           <Editor
-             apiKey='8axg3jyj5eczh039dz73ejlm43c97ft2vrlgosz4fkeqd6et'  // Si tienes una API Key de TinyMCE, la puedes agregar aquí
+             apiKey='8axg3jyj5eczh039dz73ejlm43c97ft2vrlgosz4fkeqd6et' 
             value={body}
-            onEditorChange={(newValue) => setBody(newValue)}  // Actualiza el estado del contenido
+            onEditorChange={(newValue) => setBody(newValue)} 
             init={{
               height: 400,
+              width: 650,
               menubar: false,
-              plugins: ["link", "image", "lists", "wordcount"], // Puedes añadir más plugins si es necesario
-              toolbar: "undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | link image", // Personaliza la barra de herramientas
+              plugins: ["link", "image", "lists", "wordcount", "textcolor"], 
+              toolbar: "undo redo | bold italic underline | link image | numlist bullist | forecolor",
+              valid_elements: "*[*]",
             }}
           />
-
-          {/* Aquí agregamos un input para ingresar una URL de la imagen */}
           <input
-            type="text"
-            placeholder="URL de la imagen"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
+            type="file"
+            accept="image/*"
+            multiple // Permitir múltiples archivos
+            onChange={(e) => {
+              const files = e.target.files;
+              if (files) {
+                handleImageUpload(files);
+              }
+            }}
           />
         </div>
         <div className="buttons">
@@ -162,7 +208,6 @@ export default function NewEntry() {
           getNews.map((noticia) => (
             <div className="noticiasCreadas" key={noticia.id}>
               <h4>{noticia.title}</h4>
-              {/* <button onClick={() => handleEdit(noticia.id, { title: "Nuevo Título", content: "Nuevo Contenido" })}>Editar</button> */}
               <button onClick={() => handleDelete(noticia.id)}>Borrar</button>
             </div>
           ))

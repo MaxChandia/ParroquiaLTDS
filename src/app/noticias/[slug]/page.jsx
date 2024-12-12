@@ -1,7 +1,7 @@
 import Navbar from '@/src/components/navbar';
 import Footer from '@/src/components/footer';
 import { PrismaClient } from '@prisma/client';
-import "../../../styles/noticia.css"
+import "../../../styles/noticia.css";
 
 const prisma = new PrismaClient();
 
@@ -25,12 +25,22 @@ export default async function Noticia({ params }) {
   return (
     <div>
       <Navbar />
-      <div className='noticiaContainer'>
+      <div className="noticiaContainer">
         <h1>{noticia.title}</h1>
         <p>Fecha: {new Date(noticia.createdAt).toLocaleDateString()}</p>
-        <p>{noticia.content}</p>
-        <img src={noticia.imageUrl} alt={`Imagen de ${noticia.title}`} />
-        </div>
+        {/* Renderiza el contenido como HTML */}
+        <div dangerouslySetInnerHTML={{ __html: noticia.content }} />
+      </div>
+      <div className="noticiaImagen">
+        {noticia.imageUrls &&
+          noticia.imageUrls.map((url, index) => (
+            <img
+              key={index}
+              src={url}
+              alt={`Imagen de ${noticia.title} ${index + 1}`}
+            />
+          ))}
+      </div>
       <Footer />
     </div>
   );

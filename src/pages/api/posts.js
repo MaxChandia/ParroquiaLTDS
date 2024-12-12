@@ -21,11 +21,11 @@ export default async function handler(req, res) {
 }
 
 async function handlePost(req, res) {
-  const { title, slug, content, imageUrl, authorId } = req.body || {};
+  const { title, slug, content, imageUrls, authorId } = req.body || {};
 
-  if (!title || !slug || !content || !authorId) {
+  if (!title || !slug || !content || !authorId || !imageUrls) {
     return res.status(400).json({
-      error: "El título, slug, contenido y authorId son obligatorios",
+      error: "Todos los campos son obligatorios, incluida la imagen",
     });
   }
 
@@ -35,7 +35,7 @@ async function handlePost(req, res) {
         title,
         slug,
         content,
-        imageUrl: imageUrl || null,
+        imageUrls,
         authorId,
       },
     });
@@ -49,6 +49,7 @@ async function handlePost(req, res) {
     });
   }
 }
+
 
 async function handleGet(req, res) {
   try {

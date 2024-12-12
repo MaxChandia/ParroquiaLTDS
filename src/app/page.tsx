@@ -25,7 +25,7 @@ export default function Home() {
     id: number;
     title: string;
     createdAt: string;
-    imageUrl: string;
+    imageUrls: string;
     slug: string;
   }
 
@@ -109,7 +109,7 @@ export default function Home() {
             {news.length > 0 ? (
               news.slice(0, 3).map((noticia) => (
                 <div className="noticiaItem" key={noticia.id}>
-                  <img src={noticia.imageUrl || 'default-image.jpg'} alt={`Imagen de ${noticia.title}`} />
+                  <img src={noticia.imageUrls[0] || 'default-image.jpg'} alt={`Imagen de ${noticia.title}`} />
                   <h3>{noticia.title}</h3>
                   <p>{new Date(noticia.createdAt).toLocaleDateString()}</p>
                   <button>

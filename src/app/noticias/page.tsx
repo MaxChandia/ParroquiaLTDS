@@ -11,7 +11,7 @@ interface Noticia {
   title: string;
   createdAt: string;
   slug: string;
-  imageUrl: string;
+  imageUrls: string;
 }
 
 export default function News() {
@@ -43,10 +43,10 @@ export default function News() {
           {news.length > 0 ? (
             news.map((noticia) => (
               <div className="noticiaItem" key={noticia.id}>
-                <img alt="nota1" src={noticia.imageUrl}/>
+                <img src={noticia.imageUrls[0] || 'default-image.jpg'} alt={`Imagen de ${noticia.title}`} />
                 <h3>{noticia.title}</h3>
                 <p>{new Date(noticia.createdAt).toLocaleDateString()}</p>
-                <p>Leer más</p>
+                <Link href={`/noticias/${noticia.slug}`}>Leer más</Link>
               </div>
             ))
           ) : (

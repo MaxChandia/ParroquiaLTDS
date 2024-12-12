@@ -19,7 +19,7 @@ model Post {
   title     String
   slug      String   @unique
   content   String
-  imageUrl  String
+  imageUrls  String[]
   createdAt DateTime @default(now())
   author    User     @relation("UserPosts", fields: [authorId], references: [id])
   authorId  String   @db.ObjectId

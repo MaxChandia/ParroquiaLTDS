@@ -113,3 +113,7 @@
     border: none;
     cursor: pointer;
 }
+
+.tox-edit-area {
+    max-height: none; /* Permite que el área de texto crezca sin límites */
+  }
