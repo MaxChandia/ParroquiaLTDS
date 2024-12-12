@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import "../../styles/nuevaNoticia.css";
+import "../../../styles/nuevaNoticia.css";
 import { Editor } from "@tinymce/tinymce-react";
 import Navbar from "@/src/components/navbar";
 import Footer from "@/src/components/footer";
