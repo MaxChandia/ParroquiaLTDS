@@ -41,14 +41,23 @@ export default function News() {
         </div>
         <div className="noticiasList">
           {news.length > 0 ? (
-            news.map((noticia) => (
-              <div className="noticiaItem" key={noticia.id}>
-                <img src={noticia.imageUrls[0] || 'default-image.jpg'} alt={`Imagen de ${noticia.title}`} />
-                <h3>{noticia.title}</h3>
-                <p>{new Date(noticia.createdAt).toLocaleDateString()}</p>
-                <Link href={`/noticias/${noticia.slug}`}>Leer más</Link>
-              </div>
-            ))
+            // Ordena las noticias por fecha (más reciente primero) antes de mapearlas
+            news
+              .sort(
+                (a, b) =>
+                  new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+              )
+              .map((noticia) => (
+                <div className="noticiaItem" key={noticia.id}>
+                  <img
+                    src={noticia.imageUrls[0] || "default-image.jpg"}
+                    alt={`Imagen de ${noticia.title}`}
+                  />
+                  <h3>{noticia.title}</h3>
+                  <p>{new Date(noticia.createdAt).toLocaleDateString()}</p>
+                  <Link href={`/noticias/${noticia.slug}`}><button>Leer más</button></Link>
+                </div>
+              ))
           ) : (
             <p>No hay noticias disponibles.</p>
           )}

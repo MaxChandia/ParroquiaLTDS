@@ -21,7 +21,6 @@ export default function NewEntry() {
   const [isLoading, setIsLoading] = useState(false);
   const [getNews, setGetNews] = useState<Noticia[]>([]);
   const [imageUrls, setImageUrls] = useState<string[]>([]);
-  const typingTimeout = useRef<any>(null);
 
   const handlePost = async () => {
     setIsLoading(true);
