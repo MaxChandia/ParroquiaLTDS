@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import "../../../styles/nuevaNoticia.css";
+import "../../styles/nuevanoticia.css";
 import { Editor } from "@tinymce/tinymce-react";
 import Navbar from "@/src/components/navbar";
 import Footer from "@/src/components/footer";
@@ -169,8 +169,8 @@ export default function NewEntry() {
               height: 400,
               width: 650,
               menubar: false,
-              plugins: ["link", "image", "lists", "wordcount", "textcolor"], 
-              toolbar: "undo redo | bold italic underline | link image | numlist bullist | forecolor",
+              plugins: ["link", "image", "lists", "wordcount"], 
+              toolbar: "undo redo | bold italic underline | numlist bullist",
               valid_elements: "*[*]",
             }}
           />
