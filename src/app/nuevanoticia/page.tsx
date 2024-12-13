@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/nuevanoticia.css";
 import { Editor } from "@tinymce/tinymce-react";
 import Navbar from "@/src/components/navbar";
@@ -176,7 +176,7 @@ export default function NewEntry() {
           <input
             type="file"
             accept="image/*"
-            multiple // Permitir múltiples archivos
+            multiple 
             onChange={(e) => {
               const files = e.target.files;
               if (files) {

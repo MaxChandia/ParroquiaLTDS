@@ -28,7 +28,6 @@ export default async function Noticia({ params }) {
       <div className="noticiaContainer">
         <h1>{noticia.title}</h1>
         <p>Fecha: {new Date(noticia.createdAt).toLocaleDateString()}</p>
-        {/* Renderiza el contenido como HTML */}
         <div dangerouslySetInnerHTML={{ __html: noticia.content }} />
       </div>
       <div className="noticiaImagen">

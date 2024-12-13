@@ -41,7 +41,6 @@ export default function News() {
         </div>
         <div className="noticiasList">
           {news.length > 0 ? (
-            // Ordena las noticias por fecha (más reciente primero) antes de mapearlas
             news
               .sort(
                 (a, b) =>
