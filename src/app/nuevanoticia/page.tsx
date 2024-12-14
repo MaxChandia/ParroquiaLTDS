@@ -195,7 +195,11 @@ export default function NewEntry() {
       <div className="noticiasCreadasContainer">
         <h2>Noticias creadas</h2>
         {getNews.length > 0 ? (
-          getNews.map((noticia) => (
+          getNews
+              .sort(
+                (a, b) =>
+                  new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+              ).map((noticia) => (
             <div className="noticiasCreadas" key={noticia.id}>
               <h4>{noticia.title}</h4>
               <button onClick={() => handleDelete(noticia.id)}>Borrar</button>
