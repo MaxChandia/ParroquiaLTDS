@@ -39,7 +39,7 @@ export default function News() {
             <Link href="/">Inicio</Link> | Noticias
           </p>
         </div>
-        <div className="noticiasList">
+        <div className="noticiasListPage">
           {news.length > 0 ? (
             news
               .sort(
@@ -47,7 +47,7 @@ export default function News() {
                   new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
               )
               .map((noticia) => (
-                <div className="noticiaItem" key={noticia.id}>
+                <div className="noticiaItemPage" key={noticia.id}>
                   <img
                     src={noticia.imageUrls[0] || "default-image.jpg"}
                     alt={`Imagen de ${noticia.title}`}

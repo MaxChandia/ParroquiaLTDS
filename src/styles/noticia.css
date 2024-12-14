@@ -52,4 +52,8 @@
     .noticiaContainer h1 {
         text-align: center;
     }
+
+    .noticiaImagen {
+        margin: 20px 0;
+    }
 }

@@ -468,6 +468,26 @@
         border-radius: 14px;
     }
 
+    .noticiaItem {
+        height: 350px;
+        width: 300px;
+        border: 1px solid cadetblue;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
 
+    .noticiaItem h3 {
+        font-size: 15px;
+    }
+
+    .noticiaItem button {
+        margin-bottom: 0px;
+        padding: 5px 10px;
+        
+
+    }
 
 }
