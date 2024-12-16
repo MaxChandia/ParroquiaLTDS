@@ -30,15 +30,14 @@ export default function NewEntry() {
 
   const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-  if (!token && !isAuthenticating) {
-    router.push("/login");
-    return null; 
-  }
-
-  if (token && !isAuthenticated) {
-    setIsAuthenticated(true);
-    setIsAuthenticating(false);
-  }
+  useEffect(() => {
+    if (!token && !isAuthenticating) {
+      router.push("/login");
+    } else if (token && !isAuthenticated) {
+      setIsAuthenticated(true);
+      setIsAuthenticating(false);
+    }
+  }, [token, isAuthenticated, isAuthenticating, router]);
 
   
   const handlePost = async () => {
