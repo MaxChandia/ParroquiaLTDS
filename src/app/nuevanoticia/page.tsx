@@ -22,27 +22,27 @@ export default function NewEntry() {
   const [isLoading, setIsLoading] = useState(false);
   const [getNews, setGetNews] = useState<Noticia[]>([]);
   const [imageUrls, setImageUrls] = useState<string[]>([]);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isAuthenticating, setIsAuthenticating] = useState(true);
-
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Estado de autenticación
+  const [isAuthenticating, setIsAuthenticating] = useState(true); // Estado de verificación de autenticación
   const router = useRouter();
 
+  // Comprobamos el token inmediatamente al cargar el componente
   const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
   useEffect(() => {
-    if (!token && !isAuthenticating) {
-      router.push("/login");
-    } else if (token && !isAuthenticated) {
+    if (!token) {
+      // Si no hay token, redirige a la página de error
+      router.push("/error");
+    } else {
+      // Si hay un token válido, cambiamos el estado de autenticación
       setIsAuthenticated(true);
       setIsAuthenticating(false);
     }
-  }, [token, isAuthenticated, isAuthenticating, router]);
+  }, [token, router]);
 
-  
   const handlePost = async () => {
     setIsLoading(true);
-  
+
     try {
       const response = await fetch("/api/posts", {
         method: "POST",
@@ -57,11 +57,11 @@ export default function NewEntry() {
           authorId: "64bfcdd1f4f29b1234567890",
         }),
       });
-  
+
       if (!response.ok) {
         throw new Error("Error al publicar el post");
       }
-  
+
       const data = await response.json();
       console.log("Post creado con éxito:", data);
       alert("Post publicado correctamente");
@@ -89,33 +89,6 @@ export default function NewEntry() {
     fetchPost();
   }, []);
 
- /* const handleEdit = async (id: string, updatedData: Partial<Noticia>) => {
-    try {
-      const response = await fetch(`/api/posts/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
-      });
-
-      if (!response.ok) {
-        throw new Error("No se pudo actualizar la publicación");
-      }
-
-      const updatedPost = await response.json();
-      setGetNews((prevNews) =>
-        prevNews.map((noticia) =>
-          noticia.id === id ? { ...noticia, ...updatedPost } : noticia
-        )
-      );
-      alert("Publicación actualizada correctamente.");
-    } catch (error) {
-      console.error("No se ha podido actualizar los datos", error);
-      alert("Error al actualizar los datos");
-    }
-  }; */
-
   const handleDelete = async (id: string) => {
     try {
       const response = await fetch(`/api/posts/${id}`, {
@@ -136,22 +109,22 @@ export default function NewEntry() {
 
   const handleImageUpload = async (files: FileList) => {
     const newImageUrls: string[] = [];
-  
+
     for (const file of Array.from(files)) {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", "ml_default"); // Reemplaza con tu upload_preset
-  
+
       try {
         const response = await fetch(`https://api.cloudinary.com/v1_1/dqp4mnozy/image/upload`, {
           method: "POST",
           body: formData,
         });
-  
+
         if (!response.ok) {
           throw new Error("Error al subir la imagen");
         }
-  
+
         const data = await response.json();
         console.log("URL de la imagen subida:", data.secure_url);
         newImageUrls.push(data.secure_url);
@@ -160,75 +133,85 @@ export default function NewEntry() {
         alert("Error al cargar una imagen. Intenta nuevamente.");
       }
     }
-  
+
     setImageUrls((prevUrls) => [...prevUrls, ...newImageUrls]);
   };
 
-  
-  return (
-    <div >
-      <Navbar/>
-      <div className="nuevaNoticia">
-      <div className="nuevaNoticiaContainer">
-        <div className="noticiaText">
-          <h2>Escribir nueva publicación</h2>
-          <input
-            className="tituloNoticia"
-            placeholder="Título"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <Editor
-             apiKey='8axg3jyj5eczh039dz73ejlm43c97ft2vrlgosz4fkeqd6et' 
-            value={body}
-            onEditorChange={(newValue) => setBody(newValue)} 
-            init={{
-              height: 400,
-              width: 650,
-              menubar: false,
-              plugins: ["link", "image", "lists", "wordcount"], 
-              toolbar: "undo redo | bold italic underline | numlist bullist",
-              valid_elements: "*[*]",
-            }}
-          />
-          <input
-            type="file"
-            accept="image/*"
-            multiple 
-            onChange={(e) => {
-              const files = e.target.files;
-              if (files) {
-                handleImageUpload(files);
-              }
-            }}
-          />
-        </div>
-        <div className="buttons">
-          <button onClick={handlePost} disabled={isLoading}>
-            {isLoading ? "Publicando..." : "Publicar"}
-          </button>
-        </div>
-      </div>
+  // Si aún estamos verificando la autenticación, mostramos el mensaje correspondiente
+  if (isAuthenticating) {
+    return <div>Verificando autenticación...</div>;
+  }
 
-      <div className="noticiasCreadasContainer">
-        <h2>Noticias creadas</h2>
-        {getNews.length > 0 ? (
-          getNews
+  // Si no está autenticado, redirigimos a la página de error
+  if (!isAuthenticated) {
+    return <div>No estás autenticado. Acceso denegado.</div>;
+  }
+
+  return (
+    <div>
+      <Navbar />
+      <div className="nuevaNoticia">
+        <div className="nuevaNoticiaContainer">
+          <div className="noticiaText">
+            <h2>Escribir nueva publicación</h2>
+            <input
+              className="tituloNoticia"
+              placeholder="Título"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <Editor
+              apiKey="8axg3jyj5eczh039dz73ejlm43c97ft2vrlgosz4fkeqd6et"
+              value={body}
+              onEditorChange={(newValue) => setBody(newValue)}
+              init={{
+                height: 400,
+                width: 650,
+                menubar: false,
+                plugins: ["link", "image", "lists", "wordcount"],
+                toolbar: "undo redo | bold italic underline | numlist bullist",
+                valid_elements: "*[*]",
+              }}
+            />
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={(e) => {
+                const files = e.target.files;
+                if (files) {
+                  handleImageUpload(files);
+                }
+              }}
+            />
+          </div>
+          <div className="buttons">
+            <button onClick={handlePost} disabled={isLoading}>
+              {isLoading ? "Publicando..." : "Publicar"}
+            </button>
+          </div>
+        </div>
+
+        <div className="noticiasCreadasContainer">
+          <h2>Noticias creadas</h2>
+          {getNews.length > 0 ? (
+            getNews
               .sort(
                 (a, b) =>
                   new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-              ).map((noticia) => (
-            <div className="noticiasCreadas" key={noticia.id}>
-              <h4>{noticia.title}</h4>
-              <button onClick={() => handleDelete(noticia.id)}>Borrar</button>
-            </div>
-          ))
-        ) : (
-          <p>No hay noticias</p>
-        )}
+              )
+              .map((noticia) => (
+                <div className="noticiasCreadas" key={noticia.id}>
+                  <h4>{noticia.title}</h4>
+                  <button onClick={() => handleDelete(noticia.id)}>Borrar</button>
+                </div>
+              ))
+          ) : (
+            <p>No hay noticias</p>
+          )}
+        </div>
       </div>
-      </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
