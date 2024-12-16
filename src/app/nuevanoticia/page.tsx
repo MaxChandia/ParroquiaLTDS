@@ -32,7 +32,7 @@ export default function NewEntry() {
 
   if (!token && !isAuthenticating) {
     router.push("/login");
-    return null; // O puedes retornar un cargando aquí mientras se redirige
+    return null; 
   }
 
   if (token && !isAuthenticated) {
