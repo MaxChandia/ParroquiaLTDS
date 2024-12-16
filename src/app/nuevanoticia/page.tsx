@@ -31,15 +31,16 @@ export default function NewEntry() {
       const token = localStorage.getItem("token");
       if (!token) {
         alert("Debes iniciar sesión para acceder a esta página.");
-        router.push("/login"); // router se usará únicamente en el cliente
+        router.push("/login"); 
       } else {
         setIsAuthenticated(true);
       }
     }
   }, [router]);
+  if (!isAuthenticated) {
+    return null; 
+  }
 
-
-  
 
   const handlePost = async () => {
     setIsLoading(true);
