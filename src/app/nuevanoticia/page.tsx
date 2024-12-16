@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import "../../styles/nuevanoticia.css";
 import { Editor } from "@tinymce/tinymce-react";
 import Navbar from "@/src/components/navbar";
@@ -21,6 +22,24 @@ export default function NewEntry() {
   const [isLoading, setIsLoading] = useState(false);
   const [getNews, setGetNews] = useState<Noticia[]>([]);
   const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Debes iniciar sesión para acceder a esta página.");
+        router.push("/login"); // router se usará únicamente en el cliente
+      } else {
+        setIsAuthenticated(true);
+      }
+    }
+  }, [router]);
+
+
+  
 
   const handlePost = async () => {
     setIsLoading(true);
@@ -143,7 +162,7 @@ export default function NewEntry() {
       }
     }
   
-    setImageUrls((prevUrls) => [...prevUrls, ...newImageUrls]); // Agregar las nuevas URLs al estado existente
+    setImageUrls((prevUrls) => [...prevUrls, ...newImageUrls]);
   };
 
   
