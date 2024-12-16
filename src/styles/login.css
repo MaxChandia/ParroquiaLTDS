@@ -41,7 +41,7 @@
 }
 
 
-button {
+.loginButton {
     padding: 10px 20px;
     background-color: #007BFF;
     color: white;
@@ -51,6 +51,6 @@ button {
     font-weight: 600;
 }
 
-button:hover {
+.loginButton:hover {
     background-color: #0056b3;
 }
