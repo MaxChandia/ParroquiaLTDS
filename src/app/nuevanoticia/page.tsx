@@ -28,22 +28,16 @@ export default function NewEntry() {
 
   const router = useRouter();
 
-  useEffect(() => {
-    const checkAuth = () => {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        router.push("/login");
-      } else {
-        setIsAuthenticated(true);
-      }
-      setIsAuthenticating(false);
-    };
+  const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-    checkAuth();  // Ejecutamos la verificación de autenticación sin comprobar window
-  }, [router]);
+  if (!token && !isAuthenticating) {
+    router.push("/login");
+    return null; // O puedes retornar un cargando aquí mientras se redirige
+  }
 
-  if (isAuthenticating) {
-    return null; // Puedes mostrar un mensaje de carga si es necesario
+  if (token && !isAuthenticated) {
+    setIsAuthenticated(true);
+    setIsAuthenticating(false);
   }
 
   
