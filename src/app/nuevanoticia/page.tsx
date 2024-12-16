@@ -29,6 +29,7 @@ export default function NewEntry() {
   const router = useRouter();
 
   useEffect(() => {
+    // Verificamos si estamos en el cliente (esto debe estar dentro del useEffect)
     const checkAuth = () => {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -39,18 +40,22 @@ export default function NewEntry() {
       setIsAuthenticating(false);
     };
 
+    // Solo ejecutamos el chequeo si estamos en el cliente (cuando window existe)
     if (typeof window !== "undefined") {
       checkAuth();
     }
   }, [router]);
 
+  // Si está autenticando, mostramos nada o un cargando
   if (isAuthenticating) {
     return null; // O puedes mostrar un spinner o mensaje de carga.
   }
 
+  // Si no está autenticado, no muestra nada
   if (!isAuthenticated) {
     return null; // La redirección ya se maneja arriba.
   }
+  
   const handlePost = async () => {
     setIsLoading(true);
   
