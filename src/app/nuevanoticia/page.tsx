@@ -23,26 +23,34 @@ export default function NewEntry() {
   const [getNews, setGetNews] = useState<Noticia[]>([]);
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
+
 
   const router = useRouter();
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    const checkAuth = () => {
       const token = localStorage.getItem("token");
       if (!token) {
-        alert("Debes iniciar sesión para acceder a esta página.");
         router.push("/login");
       } else {
         setIsAuthenticated(true);
       }
+      setIsAuthenticating(false);
+    };
+
+    if (typeof window !== "undefined") {
+      checkAuth();
     }
   }, [router]);
-  
-  if (!isAuthenticated && typeof window !== "undefined") {
-    return null;
-  }
-  
 
+  if (isAuthenticating) {
+    return null; // O puedes mostrar un spinner o mensaje de carga.
+  }
+
+  if (!isAuthenticated) {
+    return null; // La redirección ya se maneja arriba.
+  }
   const handlePost = async () => {
     setIsLoading(true);
   
