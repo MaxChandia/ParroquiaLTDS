@@ -147,6 +147,8 @@
     height: auto;
     max-width: 100%;    
     padding: 20px;
+    background-color: white;
+    color: black;
 }
 
 .noticiasLanding h2 {

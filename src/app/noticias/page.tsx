@@ -34,7 +34,7 @@ export default function News() {
       <Navbar />
       <div className="noticiasContainer">
         <h1>Noticias</h1>
-        <div>
+        <div className="noticiasLink">
           <p>
             <Link href="/">Inicio</Link> | Noticias
           </p>
