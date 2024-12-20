@@ -92,28 +92,7 @@ export default function Home() {
       <div className="homeImage">
         <img src="/images/parroquialanding.jpg"/>
       </div>
-      <div className="misasInformacion">
-        <div className="misasInformacionContainer">
-          <h2>Misas</h2>
-          <p>Martes a Sábado: 20:00</p>
-          <p>Domigos 12:00 y 20:00</p>
-        </div>
-        <div>
-          <h2>Adoración al santísimo</h2>
-          <p>Viernes después de</p>
-          <p>Misa de 20:00</p>
-        </div>
-        <div>
-          <h2>Dirección</h2>
-          <p>Antilhue 01991, Coviefi,</p>
-          <p>Antofagasta</p>
-        </div>
-      </div>
-      <section className="parroquiaInfo">
-          <img src="/images/misalanding.jpg"/>
-          <button><Link href="/nuestraparroquia">Conoce nuestra iglesia</Link></button>
-      </section>
-        <section className="noticiasLanding">
+      <section className="noticiasLanding">
           <h2>Novedades Parroquiales</h2>
           <div className="noticiasList">
           {news.length > 0 ? (
@@ -142,7 +121,28 @@ export default function Home() {
           </div>
           <button><Link href='/noticias'>Ver más noticias</Link></button>
         </section>
-        <section className="donacionLanding">
+      <section className="parroquiaInfo">
+          <img src="/images/misalanding.jpg"/>
+          <button><Link href="/nuestraparroquia">Conoce nuestra iglesia</Link></button>
+      </section>
+      <div className="misasInformacion">
+        <div className="misasInformacionContainer">
+          <h2>Misas</h2>
+          <p>Martes a Sábado: 20:00</p>
+          <p>Domigos 12:00 y 20:00</p>
+        </div>
+        <div>
+          <h2>Adoración al santísimo</h2>
+          <p>Viernes después de</p>
+          <p>Misa de 20:00</p>
+        </div>
+        <div>
+          <h2>Dirección</h2>
+          <p>Antilhue 01991, Coviefi,</p>
+          <p>Antofagasta</p>
+        </div>
+      </div>
+      <section className="donacionLanding">
           <div className="donacionLandingContainer">
             <h3>La caridad de Cristo</h3>
             <p>Tu aporte nos ayuda a seguir creciendo</p>
