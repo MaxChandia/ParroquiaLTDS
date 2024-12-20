@@ -195,6 +195,12 @@
     font-size: 15px;
 }
 
+.NoticiasItemPageText{
+    font-size: 12px;
+    padding: 0px 40px;
+    text-align: justify;
+}
+
 .noticiaItem img {
     height: 60%;
     width: 100%;
