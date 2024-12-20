@@ -68,10 +68,10 @@ export default function News() {
                     dangerouslySetInnerHTML={{
                       __html: truncateHTMLContent(noticia.content, 100),
                     }}
-                  />{/* Resumen dinámico */}
-                  <Link href={`/noticias/${noticia.slug}`}>
-                    <button>Leer más</button>
-                  </Link>
+                  />
+                  
+                    <button><Link href={`/noticias/${noticia.slug}`}>Leer más</Link></button>
+                  
                 </div>
               ))
           ) : (

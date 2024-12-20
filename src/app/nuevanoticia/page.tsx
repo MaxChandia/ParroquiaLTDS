@@ -40,9 +40,16 @@ export default function NewEntry() {
     }
   }, [token, router]);
 
+  const cleanHtml = (html: string): string => {
+    return html
+      .replace(/<span[^>]*>/g, "") // Remueve etiquetas <span>
+      .replace(/<\/span>/g, "")
+      .replace(/\s?dir="ltr"/g, ""); // Elimina dir="ltr"
+  };
+
   const handlePost = async () => {
     setIsLoading(true);
-
+    const cleanedBody = cleanHtml(body);
     try {
       const response = await fetch("/api/posts", {
         method: "POST",
@@ -52,7 +59,7 @@ export default function NewEntry() {
         body: JSON.stringify({
           title,
           slug: title.toLowerCase().replace(/ /g, "-"),
-          content: body,
+          content: cleanedBody,
           imageUrls, // Enviar todas las URLs de las imágenes
           authorId: "64bfcdd1f4f29b1234567890",
         }),
@@ -109,33 +116,42 @@ export default function NewEntry() {
 
   const handleImageUpload = async (files: FileList) => {
     const newImageUrls: string[] = [];
-
+    const progressElement = document.getElementById("progressBar") as HTMLDivElement;
+  
     for (const file of Array.from(files)) {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "ml_default"); // Reemplaza con tu upload_preset
-
+      formData.append("upload_preset", "ml_default");
+  
       try {
+        // Usamos fetch para subir el archivo con el progreso
         const response = await fetch(`https://api.cloudinary.com/v1_1/dqp4mnozy/image/upload`, {
           method: "POST",
           body: formData,
         });
-
+  
         if (!response.ok) {
           throw new Error("Error al subir la imagen");
         }
-
+  
         const data = await response.json();
         console.log("URL de la imagen subida:", data.secure_url);
         newImageUrls.push(data.secure_url);
+  
+        // Al completar la subida de la imagen, actualizamos la barra de progreso
+        progressElement.style.width = "100%";
+        progressElement.textContent = "¡Carga completa!";
+  
       } catch (error) {
         console.error("Error al cargar el archivo:", error);
         alert("Error al cargar una imagen. Intenta nuevamente.");
       }
     }
-
+  
+    // Después de cargar todas las imágenes, actualizamos el estado
     setImageUrls((prevUrls) => [...prevUrls, ...newImageUrls]);
   };
+  
 
   // Si aún estamos verificando la autenticación, mostramos el mensaje correspondiente
   if (isAuthenticating) {
@@ -171,6 +187,17 @@ export default function NewEntry() {
                 plugins: ["link", "image", "lists", "wordcount"],
                 toolbar: "undo redo | bold italic underline | numlist bullist",
                 valid_elements: "*[*]",
+                content_style: `
+                  body { 
+                    font-family: Montserrat, sans-serif; 
+                    font-size: 14px; 
+                    line-height: 1.5; 
+                    margin: 0; 
+                  }
+                  p { 
+                    margin: 0 0 1em; 
+                  }
+                `,
               }}
             />
             <input
@@ -184,6 +211,9 @@ export default function NewEntry() {
                 }
               }}
             />
+            <div className="progressContainer">
+            <div id="progressBar" className="progressBar"></div>
+          </div>
           </div>
           <div className="buttons">
             <button onClick={handlePost} disabled={isLoading}>

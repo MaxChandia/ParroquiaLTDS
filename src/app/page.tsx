@@ -26,6 +26,7 @@ export default function Home() {
     title: string;
     createdAt: string;
     imageUrls: string;
+    content: string;
     slug: string;
   }
 
@@ -40,6 +41,15 @@ export default function Home() {
       }
     }; fetchData();
   }, []);
+
+  const truncateHTMLContent = (html: string, maxLength: number): string => {
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = html;
+    const textContent = tempDiv.textContent || tempDiv.innerText || "";
+    return textContent.length > maxLength
+      ? textContent.slice(0, maxLength) + "..."
+      : textContent;
+  };
       
 
   return (
@@ -116,6 +126,11 @@ export default function Home() {
                 <div className="noticiaItem" key={noticia.id}>
                   <img src={noticia.imageUrls[0] || 'default-image.jpg'} alt={`Imagen de ${noticia.title}`} />
                   <h3>{noticia.title}</h3>
+                  <div className="NoticiasItemPageText"
+                    dangerouslySetInnerHTML={{
+                      __html: truncateHTMLContent(noticia.content, 100),
+                    }}
+                  />
                   <button>
                     <Link href={`/noticias/${noticia.slug}`}>Leer más</Link>
                   </button>
