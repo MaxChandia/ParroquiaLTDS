@@ -106,12 +106,13 @@ export default function Home() {
         <section className="noticiasLanding">
           <h2>Novedades Parroquiales</h2>
           <div className="noticiasList">
-            {news.length > 0 ? (
-              news.slice(0, 3)
+          {news.length > 0 ? (
+            news
               .sort(
                 (a, b) =>
                   new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-              ).map((noticia) => (
+              )
+              .slice(0, 3).map((noticia) => (
                 <div className="noticiaItem" key={noticia.id}>
                   <img src={noticia.imageUrls[0] || 'default-image.jpg'} alt={`Imagen de ${noticia.title}`} />
                   <h3>{noticia.title}</h3>

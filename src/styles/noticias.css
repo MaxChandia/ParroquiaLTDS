@@ -39,8 +39,9 @@
 
 }
 
-.noticiaItemPage p{
-    font-size: 15px;
+.NoticiasItemPageText{
+    font-size: 12px;
+    padding: 0px 40px;
 }
 
 .noticiaItemPage img {

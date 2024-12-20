@@ -10,8 +10,9 @@ interface Noticia {
   id: string;
   title: string;
   createdAt: string;
+  content: string;
   slug: string;
-  imageUrls: string;
+  imageUrls: string[];
 }
 
 export default function News() {
@@ -20,14 +21,24 @@ export default function News() {
   useEffect(() => {
     const handleNews = async () => {
       try {
-        const response = await fetch ("/api/getNews");
+        const response = await fetch("/api/getNews");
         const data = await response.json();
         setNews(data);
-      } catch (error){
-        console.error ("hubo un error", error);
+      } catch (error) {
+        console.error("Hubo un error", error);
       }
-    }; handleNews();
+    };
+    handleNews();
   }, []);
+
+  const truncateHTMLContent = (html: string, maxLength: number): string => {
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = html;
+    const textContent = tempDiv.textContent || tempDiv.innerText || "";
+    return textContent.length > maxLength
+      ? textContent.slice(0, maxLength) + "..."
+      : textContent;
+  };
 
   return (
     <div>
@@ -53,7 +64,14 @@ export default function News() {
                     alt={`Imagen de ${noticia.title}`}
                   />
                   <h3>{noticia.title}</h3>
-                  <Link href={`/noticias/${noticia.slug}`}><button>Leer más</button></Link>
+                  <div className="NoticiasItemPageText"
+                    dangerouslySetInnerHTML={{
+                      __html: truncateHTMLContent(noticia.content, 100),
+                    }}
+                  />{/* Resumen dinámico */}
+                  <Link href={`/noticias/${noticia.slug}`}>
+                    <button>Leer más</button>
+                  </Link>
                 </div>
               ))
           ) : (
@@ -65,5 +83,3 @@ export default function News() {
     </div>
   );
 }
-
-

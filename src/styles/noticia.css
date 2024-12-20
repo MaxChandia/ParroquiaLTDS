@@ -28,6 +28,8 @@
     margin: 0px 200px 80px 200px; 
     padding: 20px;
     box-sizing: border-box; 
+    background-color: white;
+    color: black;
 }
 
 .noticiaImagen img {
