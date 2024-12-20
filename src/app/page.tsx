@@ -115,7 +115,6 @@ export default function Home() {
                 <div className="noticiaItem" key={noticia.id}>
                   <img src={noticia.imageUrls[0] || 'default-image.jpg'} alt={`Imagen de ${noticia.title}`} />
                   <h3>{noticia.title}</h3>
-                  <p>{new Date(noticia.createdAt).toLocaleDateString()}</p>
                   <button>
                     <Link href={`/noticias/${noticia.slug}`}>Leer más</Link>
                   </button>

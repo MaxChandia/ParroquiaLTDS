@@ -53,7 +53,6 @@ export default function News() {
                     alt={`Imagen de ${noticia.title}`}
                   />
                   <h3>{noticia.title}</h3>
-                  <p>{new Date(noticia.createdAt).toLocaleDateString()}</p>
                   <Link href={`/noticias/${noticia.slug}`}><button>Leer más</button></Link>
                 </div>
               ))
