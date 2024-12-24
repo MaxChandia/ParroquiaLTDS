@@ -72,12 +72,16 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 50px;
-        gap: 0px;
+        gap: 30px;
     
+    }
+
+    .NoticiasItemPageText {
+        font-size: 11px;
     }
     
     .noticiaItemPage {
-        height: 350px;
+        height: 450px;
         width: 300px;
         border: 1px solid cadetblue;
         border-radius: 10px;
