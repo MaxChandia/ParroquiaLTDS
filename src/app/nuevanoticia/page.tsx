@@ -47,9 +47,14 @@ export default function NewEntry() {
       .replace(/\s?dir="ltr"/g, ""); // Elimina dir="ltr"
   };
 
+  const removeDiacritics = (str: string): string => {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Remueve los diacríticos
+  };
+  
   const handlePost = async () => {
     setIsLoading(true);
     const cleanedBody = cleanHtml(body);
+    const cleanedTitle = removeDiacritics(title.toLowerCase().replace(/ /g, "-")); // Elimina tildes y genera slug
     try {
       const response = await fetch("/api/posts", {
         method: "POST",
@@ -58,17 +63,17 @@ export default function NewEntry() {
         },
         body: JSON.stringify({
           title,
-          slug: title.toLowerCase().replace(/ /g, "-"),
+          slug: cleanedTitle,
           content: cleanedBody,
           imageUrls, // Enviar todas las URLs de las imágenes
           authorId: "64bfcdd1f4f29b1234567890",
         }),
       });
-
+  
       if (!response.ok) {
         throw new Error("Error al publicar el post");
       }
-
+  
       const data = await response.json();
       console.log("Post creado con éxito:", data);
       alert("Post publicado correctamente");
@@ -82,7 +87,7 @@ export default function NewEntry() {
       setImageUrls([]);
     }
   };
-
+  
   useEffect(() => {
     const fetchPost = async () => {
       try {
