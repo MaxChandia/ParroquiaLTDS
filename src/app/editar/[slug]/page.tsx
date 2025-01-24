@@ -4,6 +4,7 @@ import Navbar from '@/src/components/navbar';
 import Footer from '@/src/components/footer';
 import "../../../styles/editar.css";
 import { useState, useEffect } from 'react';
+import { PageParams } from '@/types';
 
 interface Noticia {
   title: string;
@@ -13,11 +14,10 @@ interface Noticia {
   imageUrls: string[];
 }
 
-interface EditarNoticiaProps {
-  params: { slug: string };
-}
 
-export default function EditarNoticia({ params }: EditarNoticiaProps) {
+
+export default function EditarNoticia({ params }: PageParams)  {
+  const { slug } = params;
   const [noticia, setNoticia] = useState<Noticia | null>(null); 
   const [title, setTitle] = useState(''); 
   const [content, setContent] = useState(''); 
