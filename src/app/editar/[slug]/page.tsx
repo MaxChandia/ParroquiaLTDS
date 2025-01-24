@@ -1,10 +1,10 @@
-"use client";  // Mantén esto para indicar que es un componente del lado del cliente
+"use client";
 
+// src/app/editar/[slug]/page.tsx
 import Navbar from 'src/components/navbar';
 import Footer from 'src/components/footer';
 import "../../../styles/editar.css";
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';  // Importa useRouter
 
 interface Noticia {
   title: string;
@@ -14,37 +14,37 @@ interface Noticia {
   imageUrls: string[];
 }
 
-export default function EditarNoticia() {
-  const router = useRouter();  // Usa useRouter para obtener el slug de la URL
-  const { slug } = router.query;  // Obtén el slug desde router.query
-
+export default function EditarNoticia({ params }: { params: { slug: string } }) {
   const [noticia, setNoticia] = useState<Noticia | null>(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
   useEffect(() => {
-    if (!slug) return; // Asegúrate de que slug esté disponible
-
-    async function fetchNoticia() {
+    // Llamada a la API para obtener la noticia con el slug
+    const fetchNoticia = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${slug}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch noticia');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${params.slug}`);
+        if (response.ok) {
+          const data = await response.json();
+          setNoticia(data);
+          setTitle(data.title);
+          setContent(data.content);
+        } else {
+          throw new Error('No se pudo obtener la noticia');
         }
-        const data = await response.json();
-        setNoticia(data);
-        setTitle(data.title);
-        setContent(data.content);
       } catch (error) {
         console.error('Error fetching noticia:', error);
       }
-    }
+    };
+
     fetchNoticia();
-  }, [slug]);
+  }, [params.slug]);
 
   const handleUpdate = async () => {
+    if (!noticia) return;
+
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${slug}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${params.slug}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
