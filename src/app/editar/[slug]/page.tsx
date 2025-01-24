@@ -5,6 +5,7 @@ import Navbar from 'src/components/navbar';
 import Footer from 'src/components/footer';
 import "../../../styles/editar.css";
 import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';  // Importa useParams
 
 interface Noticia {
   title: string;
@@ -14,12 +15,16 @@ interface Noticia {
   imageUrls: string[];
 }
 
-export default function EditarNoticia({ params }: { params: { slug: string } }) {
+export default function EditarNoticia() {
+  const params = useParams();  // Obtén los parámetros de la URL
+
   const [noticia, setNoticia] = useState<Noticia | null>(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
   useEffect(() => {
+    if (!params?.slug) return;  // Asegúrate de que slug esté disponible
+
     // Llamada a la API para obtener la noticia con el slug
     const fetchNoticia = async () => {
       try {
@@ -38,13 +43,13 @@ export default function EditarNoticia({ params }: { params: { slug: string } }) 
     };
 
     fetchNoticia();
-  }, [params.slug]);
+  }, [params?.slug]);  // Solo ejecutará cuando params.slug cambie
 
   const handleUpdate = async () => {
     if (!noticia) return;
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${params.slug}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${params?.slug}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
