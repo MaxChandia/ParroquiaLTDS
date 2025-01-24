@@ -17,6 +17,7 @@ interface Noticia {
 
 
 export default function EditarNoticia({ params }: PageParams)  {
+  const { slug } = params;
   const [noticia, setNoticia] = useState<Noticia | null>(null); 
   const [title, setTitle] = useState(''); 
   const [content, setContent] = useState(''); 
@@ -25,7 +26,7 @@ export default function EditarNoticia({ params }: PageParams)  {
   useEffect(() => {
     async function fetchNoticia() {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${params.slug}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${slug}`);
         if (!response.ok) {
           throw new Error('Failed to fetch noticia');
         }
@@ -38,11 +39,11 @@ export default function EditarNoticia({ params }: PageParams)  {
       }
     }
     fetchNoticia();
-  }, [params.slug]);
+  }, [slug]);
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${params.slug}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${slug}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
