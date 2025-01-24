@@ -13,13 +13,7 @@ interface Noticia {
   imageUrls: string[];
 }
 
-interface EditarNoticiaProps {
-  params: {
-    slug: string;
-  };
-}
-
-export default function EditarNoticia({ params }: EditarNoticiaProps) {
+export default function EditarNoticia({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const [noticia, setNoticia] = useState<Noticia | null>(null);
   const [title, setTitle] = useState('');
