@@ -3,6 +3,7 @@
 import Navbar from '@/src/components/navbar';
 import Footer from '@/src/components/footer';
 import "../../../styles/noticia.css";
+import { useState, useEffect } from 'react';
 
 interface Noticia {
   title: string;
@@ -16,28 +17,38 @@ interface EditarNoticiaProps {
   params: { slug: string };
 }
 
-async function fetchNoticia(slug: string): Promise<Noticia> {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${slug}`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch noticia');
-  }
-  return response.json();
-}
+export default function EditarNoticia({ params }: EditarNoticiaProps) {
+  const [noticia, setNoticia] = useState<Noticia | null>(null); 
+  const [title, setTitle] = useState(''); 
+  const [content, setContent] = useState(''); 
 
-export default async function EditarNoticia({ params }: EditarNoticiaProps) {
-  const noticia = await fetchNoticia(params.slug);
 
-  const handleUpdate = async (slug: string) => {
-    const title = (document.querySelector('input[name="title"]') as HTMLInputElement).value;
-    const content = (document.querySelector('textarea[name="content"]') as HTMLTextAreaElement).value;
+  useEffect(() => {
+    async function fetchNoticia() {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${params.slug}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch noticia');
+        }
+        const data = await response.json();
+        setNoticia(data);
+        setTitle(data.title); 
+        setContent(data.content);
+      } catch (error) {
+        console.error('Error fetching noticia:', error);
+      }
+    }
+    fetchNoticia();
+  }, [params.slug]);
 
+  const handleUpdate = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${slug}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${params.slug}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ title, content }),
+        body: JSON.stringify({ title, content }), 
       });
 
       if (!response.ok) {
@@ -53,6 +64,10 @@ export default async function EditarNoticia({ params }: EditarNoticiaProps) {
     }
   };
 
+  if (!noticia) {
+    return <div>Cargando...</div>;
+  }
+
   return (
     <div>
       <Navbar />
@@ -61,14 +76,16 @@ export default async function EditarNoticia({ params }: EditarNoticiaProps) {
         <div className="editForm">
           <input
             type="text"
-            defaultValue={noticia.title}
+            value={title} 
+            onChange={(e) => setTitle(e.target.value)} 
             name="title"
           />
           <textarea
-            defaultValue={noticia.content}
+            value={content} 
+            onChange={(e) => setContent(e.target.value)} 
             name="content"
           />
-          <button onClick={() => handleUpdate(params.slug)}>Actualizar</button>
+          <button onClick={handleUpdate}>Actualizar</button>
         </div>
       </div>
       <Footer />
