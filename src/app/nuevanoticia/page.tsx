@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import "../../styles/nuevanoticia.css";
 import { Editor } from "@tinymce/tinymce-react";
-import Navbar from "@/src/components/navbar";
-import Footer from "@/src/components/footer";
+import Navbar from "src/components/navbar";
+import Footer from "src/components/footer";
 
 interface Noticia {
   id: string;

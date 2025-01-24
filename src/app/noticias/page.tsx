@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Navbar from "@/src/components/navbar.jsx";
-import Footer from "@/src/components/footer";
+import Navbar from "src/components/navbar.jsx";
+import Footer from "src/components/footer";
 import '../../styles/noticias.css';
 
 interface Noticia {
