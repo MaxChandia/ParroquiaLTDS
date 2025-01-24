@@ -15,7 +15,7 @@ interface Noticia {
 
 interface EditarNoticiaProps {
   params: {
-    slug: string; // Ajustamos para que coincida con Next.js
+    slug: string;
   };
 }
 
