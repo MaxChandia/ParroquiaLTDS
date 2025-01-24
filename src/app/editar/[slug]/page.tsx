@@ -14,41 +14,41 @@ interface Noticia {
 }
 
 interface EditarNoticiaProps {
-  params: Promise<{ slug: string }>; 
+  params: { slug: string };
 }
 
-export default async function EditarNoticia({ params }: EditarNoticiaProps) {
-  const { slug } = await params; // Resuelve la promesa aquí.
-  const [noticia, setNoticia] = useState<Noticia | null>(null);
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+export default function EditarNoticia({ params }: EditarNoticiaProps) {
+  const [noticia, setNoticia] = useState<Noticia | null>(null); 
+  const [title, setTitle] = useState(''); 
+  const [content, setContent] = useState(''); 
+
 
   useEffect(() => {
     async function fetchNoticia() {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${slug}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${params.slug}`);
         if (!response.ok) {
           throw new Error('Failed to fetch noticia');
         }
         const data = await response.json();
         setNoticia(data);
-        setTitle(data.title);
+        setTitle(data.title); 
         setContent(data.content);
       } catch (error) {
         console.error('Error fetching noticia:', error);
       }
     }
     fetchNoticia();
-  }, [slug]);
+  }, [params.slug]);
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${slug}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${params.slug}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ title, content }),
+        body: JSON.stringify({ title, content }), 
       });
 
       if (!response.ok) {
@@ -76,13 +76,13 @@ export default async function EditarNoticia({ params }: EditarNoticiaProps) {
         <div className="editForm">
           <input
             type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={title} 
+            onChange={(e) => setTitle(e.target.value)} 
             name="title"
           />
           <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
+            value={content} 
+            onChange={(e) => setContent(e.target.value)} 
             name="content"
           />
           <button onClick={handleUpdate}>Actualizar</button>
