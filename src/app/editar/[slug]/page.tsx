@@ -2,7 +2,7 @@
 
 import Navbar from '@/src/components/navbar';
 import Footer from '@/src/components/footer';
-import "../../../styles/noticia.css";
+import "../../../styles/editar.css";
 import { useState, useEffect } from 'react';
 
 interface Noticia {
@@ -69,9 +69,9 @@ export default function EditarNoticia({ params }: EditarNoticiaProps) {
   }
 
   return (
-    <div>
+    <div className="editarContainer">
       <Navbar />
-      <div className="noticiaContainer">
+      <div className="editarContainerText">
         <h1>Editar: {noticia.title}</h1>
         <div className="editForm">
           <input
