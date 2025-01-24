@@ -1,6 +1,9 @@
+"use client";
+
 import Navbar from '@/src/components/navbar';
 import Footer from '@/src/components/footer';
 import "../../../styles/noticia.css";
+import { title } from 'process';
 
 interface Noticia {
   title: string;
@@ -25,13 +28,31 @@ async function fetchNoticia(slug: string): Promise<Noticia> {
 export default async function EditarNoticia({ params }: EditarNoticiaProps) {
   const noticia = await fetchNoticia(params.slug);
 
-  const handleUpdate = async (slug:string) => {
+  const handleUpdate = async (slug: string) => {
+    const title = (document.querySelector('input[name="title"]') as HTMLInputElement).value;
+    const content = (document.querySelector('textarea[name="content"]') as HTMLTextAreaElement).value;
+
     try {
-        const response = await fetch('/api/edit/${slug}')
-    }catch(error){
-        console.error("No se pudo actualizar")
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${slug}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ title, content }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update noticia');
+      }
+
+      const updatedNoticia = await response.json();
+      console.log('Noticia actualizada:', updatedNoticia);
+      alert('Noticia actualizada exitosamente');
+    } catch (error) {
+      console.error('No se pudo actualizar:', error);
+      alert('Ocurrió un error al actualizar la noticia');
     }
-  }
+  };
 
   return (
     <div>
@@ -48,7 +69,7 @@ export default async function EditarNoticia({ params }: EditarNoticiaProps) {
             defaultValue={noticia.content}
             name="content"
           />
-          <button>Actualizar</button>
+          <button onClick={() => handleUpdate(params.slug)}>Actualizar</button>
         </div>
       </div>
       <Footer />
