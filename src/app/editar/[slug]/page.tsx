@@ -4,7 +4,6 @@ import Navbar from 'src/components/navbar';
 import Footer from 'src/components/footer';
 import "../../../styles/editar.css";
 import { useState, useEffect } from 'react';
-import { Metadata } from 'next';
 
 interface Noticia {
   title: string;
@@ -14,15 +13,7 @@ interface Noticia {
   imageUrls: string[];
 }
 
-interface EditarNoticiaProps {
-  params: { slug: string };
-}
-
-export async function generateMetadata({ params }: EditarNoticiaProps): Promise<Metadata> {
-  return { title: `Editar Noticia: ${params.slug}` };
-}
-
-export default function EditarNoticia({ params }: EditarNoticiaProps) {
+export default function EditarNoticia({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const [noticia, setNoticia] = useState<Noticia | null>(null);
   const [title, setTitle] = useState('');
