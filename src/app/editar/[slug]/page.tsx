@@ -14,14 +14,13 @@ interface Noticia {
 }
 
 interface EditarNoticiaProps {
-  params: { slug: string };
+  params: { slug: string }; 
 }
 
 export default function EditarNoticia({ params }: EditarNoticiaProps) {
-  const [noticia, setNoticia] = useState<Noticia | null>(null); 
-  const [title, setTitle] = useState(''); 
-  const [content, setContent] = useState(''); 
-
+  const [noticia, setNoticia] = useState<Noticia | null>(null);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
 
   useEffect(() => {
     async function fetchNoticia() {
@@ -32,7 +31,7 @@ export default function EditarNoticia({ params }: EditarNoticiaProps) {
         }
         const data = await response.json();
         setNoticia(data);
-        setTitle(data.title); 
+        setTitle(data.title);
         setContent(data.content);
       } catch (error) {
         console.error('Error fetching noticia:', error);
@@ -48,7 +47,7 @@ export default function EditarNoticia({ params }: EditarNoticiaProps) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ title, content }), 
+        body: JSON.stringify({ title, content }),
       });
 
       if (!response.ok) {
@@ -76,13 +75,13 @@ export default function EditarNoticia({ params }: EditarNoticiaProps) {
         <div className="editForm">
           <input
             type="text"
-            value={title} 
-            onChange={(e) => setTitle(e.target.value)} 
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             name="title"
           />
           <textarea
-            value={content} 
-            onChange={(e) => setContent(e.target.value)} 
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
             name="content"
           />
           <button onClick={handleUpdate}>Actualizar</button>
