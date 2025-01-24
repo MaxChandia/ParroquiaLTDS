@@ -1,5 +1,6 @@
 export interface PageParams {
     params: {
-      slug: string; 
+      slug: string;
     };
-  };
+  }
+  

@@ -4,7 +4,6 @@ import Navbar from '@/src/components/navbar';
 import Footer from '@/src/components/footer';
 import "../../../styles/editar.css";
 import { useState, useEffect } from 'react';
-import { PageParams } from '@/types';
 
 interface Noticia {
   title: string;
@@ -14,14 +13,17 @@ interface Noticia {
   imageUrls: string[];
 }
 
+interface EditarNoticiaProps {
+  params: {
+    slug: string; // Ajustamos para que coincida con Next.js
+  };
+}
 
-
-export default function EditarNoticia({ params }: PageParams)  {
+export default function EditarNoticia({ params }: EditarNoticiaProps) {
   const { slug } = params;
-  const [noticia, setNoticia] = useState<Noticia | null>(null); 
-  const [title, setTitle] = useState(''); 
-  const [content, setContent] = useState(''); 
-
+  const [noticia, setNoticia] = useState<Noticia | null>(null);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
 
   useEffect(() => {
     async function fetchNoticia() {
@@ -32,7 +34,7 @@ export default function EditarNoticia({ params }: PageParams)  {
         }
         const data = await response.json();
         setNoticia(data);
-        setTitle(data.title); 
+        setTitle(data.title);
         setContent(data.content);
       } catch (error) {
         console.error('Error fetching noticia:', error);
@@ -48,7 +50,7 @@ export default function EditarNoticia({ params }: PageParams)  {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ title, content }), 
+        body: JSON.stringify({ title, content }),
       });
 
       if (!response.ok) {
@@ -76,13 +78,13 @@ export default function EditarNoticia({ params }: PageParams)  {
         <div className="editForm">
           <input
             type="text"
-            value={title} 
-            onChange={(e) => setTitle(e.target.value)} 
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             name="title"
           />
           <textarea
-            value={content} 
-            onChange={(e) => setContent(e.target.value)} 
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
             name="content"
           />
           <button onClick={handleUpdate}>Actualizar</button>
