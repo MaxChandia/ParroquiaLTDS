@@ -17,7 +17,6 @@ interface Noticia {
 
 
 export default function EditarNoticia({ params }: PageParams)  {
-  const { slug } = params;
   const [noticia, setNoticia] = useState<Noticia | null>(null); 
   const [title, setTitle] = useState(''); 
   const [content, setContent] = useState(''); 
