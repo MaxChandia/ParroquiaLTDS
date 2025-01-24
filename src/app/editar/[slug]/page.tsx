@@ -14,10 +14,11 @@ interface Noticia {
 }
 
 interface EditarNoticiaProps {
-  params: { slug: string }; 
+  params: Promise<{ slug: string }>; 
 }
 
-export default function EditarNoticia({ params }: EditarNoticiaProps) {
+export default async function EditarNoticia({ params }: EditarNoticiaProps) {
+  const { slug } = await params; // Resuelve la promesa aquí.
   const [noticia, setNoticia] = useState<Noticia | null>(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -25,7 +26,7 @@ export default function EditarNoticia({ params }: EditarNoticiaProps) {
   useEffect(() => {
     async function fetchNoticia() {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${params.slug}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${slug}`);
         if (!response.ok) {
           throw new Error('Failed to fetch noticia');
         }
@@ -38,11 +39,11 @@ export default function EditarNoticia({ params }: EditarNoticiaProps) {
       }
     }
     fetchNoticia();
-  }, [params.slug]);
+  }, [slug]);
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${params.slug}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${slug}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
