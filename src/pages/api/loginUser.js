@@ -1,4 +1,5 @@
-import { prisma } from "@prisma"; // Asegúrate de que Prisma esté configurado correctamente
+import { prisma } from "@/lib/prisma";
+
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
