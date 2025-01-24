@@ -3,7 +3,6 @@
 import Navbar from '@/src/components/navbar';
 import Footer from '@/src/components/footer';
 import "../../../styles/noticia.css";
-import { title } from 'process';
 
 interface Noticia {
   title: string;
