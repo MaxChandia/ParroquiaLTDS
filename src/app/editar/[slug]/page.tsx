@@ -1,9 +1,10 @@
-"use client";
+"use client";  // Mantén esto para indicar que es un componente del lado del cliente
 
 import Navbar from 'src/components/navbar';
 import Footer from 'src/components/footer';
 import "../../../styles/editar.css";
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';  // Importa useRouter
 
 interface Noticia {
   title: string;
@@ -13,17 +14,17 @@ interface Noticia {
   imageUrls: string[];
 }
 
-interface EditarNoticiaProps {
-  params: { slug: string };
-}
+export default function EditarNoticia() {
+  const router = useRouter();  // Usa useRouter para obtener el slug de la URL
+  const { slug } = router.query;  // Obtén el slug desde router.query
 
-export default function EditarNoticia({ params }: EditarNoticiaProps) {
-  const { slug } = params;
   const [noticia, setNoticia] = useState<Noticia | null>(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
   useEffect(() => {
+    if (!slug) return; // Asegúrate de que slug esté disponible
+
     async function fetchNoticia() {
       try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${slug}`);
