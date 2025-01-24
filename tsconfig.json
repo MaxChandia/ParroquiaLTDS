@@ -35,7 +35,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "node_modules/@prisma/client/index.d.ts",
-    "prisma/schema.prisma",
+    "prisma/schema.prisma", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/nuevanoticia/page.jsx", "src/pages/api/route.ts", "src/**/*"
   ],
   "exclude": [
     "node_modules"
