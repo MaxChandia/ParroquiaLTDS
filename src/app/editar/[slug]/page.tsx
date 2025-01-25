@@ -28,7 +28,7 @@ export default function EditarNoticia() {
     // Llamada a la API para obtener la noticia con el slug
     const fetchNoticia = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${params.slug}`);
+        const response = await fetch(`/api/edit/${params.slug}`);
         if (response.ok) {
           const data = await response.json();
           setNoticia(data);
@@ -49,7 +49,7 @@ export default function EditarNoticia() {
     if (!noticia) return;
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/edit/${params?.slug}`, {
+      const response = await fetch(`/api/edit/${params?.slug}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
