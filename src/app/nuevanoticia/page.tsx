@@ -226,9 +226,11 @@ export default function NewEntry() {
             </button>
           </div>
         </div>
-
+        <div className="noticiasCreadasTitle">
+        <h2>Noticias creadas</h2> 
+        </div>       
         <div className="noticiasCreadasContainer">
-          <h2>Noticias creadas</h2>
+          
           {getNews.length > 0 ? (
             getNews
               .sort(
@@ -237,8 +239,11 @@ export default function NewEntry() {
               )
               .map((noticia) => (
                 <div className="noticiasCreadas" key={noticia.id}>
-                  <h4>{noticia.title}</h4>
+                  <h4 onClick={() => router.push(`/noticias/${noticia.slug}`)}>{noticia.title}</h4>
+                  <div className="buttonContainer">
+                  <button  onClick={() => router.push(`/editar/${noticia.slug}`)} >Editar</button>
                   <button onClick={() => handleDelete(noticia.id)}>Borrar</button>
+                  </div>
                 </div>
               ))
           ) : (

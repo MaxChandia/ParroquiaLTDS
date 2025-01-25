@@ -1,11 +1,10 @@
 "use client";
 
-// src/app/editar/[slug]/page.tsx
 import Navbar from 'src/components/navbar';
 import Footer from 'src/components/footer';
 import "../../../styles/editar.css";
 import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';  // Importa useParams
+import { useParams } from 'next/navigation';  //
 
 interface Noticia {
   title: string;
@@ -16,16 +15,16 @@ interface Noticia {
 }
 
 export default function EditarNoticia() {
-  const params = useParams();  // Obtén los parámetros de la URL
+  const params = useParams();  
 
   const [noticia, setNoticia] = useState<Noticia | null>(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
   useEffect(() => {
-    if (!params?.slug) return;  // Asegúrate de que slug esté disponible
+    if (!params?.slug) return; 
 
-    // Llamada a la API para obtener la noticia con el slug
+
     const fetchNoticia = async () => {
       try {
         const response = await fetch(`/api/edit/${params.slug}`);
@@ -43,7 +42,7 @@ export default function EditarNoticia() {
     };
 
     fetchNoticia();
-  }, [params?.slug]);  // Solo ejecutará cuando params.slug cambie
+  }, [params?.slug]);  
 
   const handleUpdate = async () => {
     if (!noticia) return;
