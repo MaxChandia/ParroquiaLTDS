@@ -26,15 +26,13 @@ export default function NewEntry() {
   const [isAuthenticating, setIsAuthenticating] = useState(true); // Estado de verificación de autenticación
   const router = useRouter();
 
-  // Comprobamos el token inmediatamente al cargar el componente
   const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
   useEffect(() => {
     if (!token) {
-      // Si no hay token, redirige a la página de error
       router.push("/error");
     } else {
-      // Si hay un token válido, cambiamos el estado de autenticación
+    
       setIsAuthenticated(true);
       setIsAuthenticating(false);
     }
@@ -42,9 +40,9 @@ export default function NewEntry() {
 
   const cleanHtml = (html: string): string => {
     return html
-      .replace(/<span[^>]*>/g, "") // Remueve etiquetas <span>
+      .replace(/<span[^>]*>/g, "")
       .replace(/<\/span>/g, "")
-      .replace(/\s?dir="ltr"/g, ""); // Elimina dir="ltr"
+      .replace(/\s?dir="ltr"/g, ""); 
   };
 
   const removeDiacritics = (str: string): string => {
@@ -65,7 +63,7 @@ export default function NewEntry() {
           title,
           slug: cleanedTitle,
           content: cleanedBody,
-          imageUrls, // Enviar todas las URLs de las imágenes
+          imageUrls, 
           authorId: "64bfcdd1f4f29b1234567890",
         }),
       });
@@ -129,7 +127,6 @@ export default function NewEntry() {
       formData.append("upload_preset", "ml_default");
   
       try {
-        // Usamos fetch para subir el archivo con el progreso
         const response = await fetch(`https://api.cloudinary.com/v1_1/dqp4mnozy/image/upload`, {
           method: "POST",
           body: formData,
@@ -143,7 +140,7 @@ export default function NewEntry() {
         console.log("URL de la imagen subida:", data.secure_url);
         newImageUrls.push(data.secure_url);
   
-        // Al completar la subida de la imagen, actualizamos la barra de progreso
+    
         progressElement.style.width = "100%";
         progressElement.textContent = "¡Carga completa!";
   
@@ -153,17 +150,16 @@ export default function NewEntry() {
       }
     }
   
-    // Después de cargar todas las imágenes, actualizamos el estado
+  
     setImageUrls((prevUrls) => [...prevUrls, ...newImageUrls]);
   };
   
 
-  // Si aún estamos verificando la autenticación, mostramos el mensaje correspondiente
+ 
   if (isAuthenticating) {
     return <div>Verificando autenticación...</div>;
   }
 
-  // Si no está autenticado, redirigimos a la página de error
   if (!isAuthenticated) {
     return <div>No estás autenticado. Acceso denegado.</div>;
   }

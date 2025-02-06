@@ -3,19 +3,16 @@ import { prisma } from "@/lib/prisma";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    const { user, password } = req.body || {}; // Asegúrate de que req.body sea un objeto
+    const { user, password } = req.body || {}; 
 
     if (!user || !password) {
       return res.status(400).json({ error: "Datos incompletos" });
     }
 
     try {
-      // Busca por el campo `user`, que es el nombre de usuario en tu base de datos
       const userData = await prisma.user.findUnique({
-        where: { user }, // Aquí buscamos por el nombre de usuario
+        where: { user }, 
       });
-
-      // Verifica si el usuario existe y la contraseña es correcta
       if (userData && userData.password === password) {
         res.status(200).json({ user: userData });
       } else {
