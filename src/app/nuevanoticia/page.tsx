@@ -21,9 +21,9 @@ export default function NewEntry() {
   const [body, setBody] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [getNews, setGetNews] = useState<Noticia[]>([]);
-  const [imageUrls, setImageUrls] = useState<string[]>([]);
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Estado de autenticación
-  const [isAuthenticating, setIsAuthenticating] = useState(true); // Estado de verificación de autenticación
+  const [imageUrls, setImageUrls] = useState<{ url: string; name: string }[]>([]);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); 
+  const [isAuthenticating, setIsAuthenticating] = useState(true); 
   const router = useRouter();
 
   const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
@@ -46,13 +46,15 @@ export default function NewEntry() {
   };
 
   const removeDiacritics = (str: string): string => {
-    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Remueve los diacríticos
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); 
   };
   
   const handlePost = async () => {
     setIsLoading(true);
     const cleanedBody = cleanHtml(body);
-    const cleanedTitle = removeDiacritics(title.toLowerCase().replace(/ /g, "-")); // Elimina tildes y genera slug
+    const cleanedTitle = removeDiacritics(title.toLowerCase().replace(/ /g, "-")); 
+    const imageUrlsOnly = imageUrls.map((image) => image.url);
+    
     try {
       const response = await fetch("/api/posts", {
         method: "POST",
@@ -63,7 +65,7 @@ export default function NewEntry() {
           title,
           slug: cleanedTitle,
           content: cleanedBody,
-          imageUrls, 
+          imageUrls: imageUrlsOnly, 
           authorId: "64bfcdd1f4f29b1234567890",
         }),
       });
@@ -118,8 +120,7 @@ export default function NewEntry() {
   };
 
   const handleImageUpload = async (files: FileList) => {
-    const newImageUrls: string[] = [];
-    const progressElement = document.getElementById("progressBar") as HTMLDivElement;
+    const newImageUrls: { url: string; name: string }[] = [];
   
     for (const file of Array.from(files)) {
       const formData = new FormData();
@@ -138,11 +139,9 @@ export default function NewEntry() {
   
         const data = await response.json();
         console.log("URL de la imagen subida:", data.secure_url);
-        newImageUrls.push(data.secure_url);
   
-    
-        progressElement.style.width = "100%";
-        progressElement.textContent = "¡Carga completa!";
+        
+        newImageUrls.push({ url: data.secure_url, name: file.name });
   
       } catch (error) {
         console.error("Error al cargar el archivo:", error);
@@ -150,12 +149,11 @@ export default function NewEntry() {
       }
     }
   
-  
+    
     setImageUrls((prevUrls) => [...prevUrls, ...newImageUrls]);
   };
   
 
- 
   if (isAuthenticating) {
     return <div>Verificando autenticación...</div>;
   }
@@ -201,7 +199,7 @@ export default function NewEntry() {
                 `,
               }}
             />
-            <input
+           <input
               type="file"
               accept="image/*"
               multiple
@@ -212,9 +210,21 @@ export default function NewEntry() {
                 }
               }}
             />
-            <div className="progressContainer">
-            <div id="progressBar" className="progressBar"></div>
-          </div>
+
+            <div className="uploadedImages">
+              {imageUrls.map((image, index) => (
+                <div key={index} className="uploadedImage">
+                  <span>{image.name}</span>
+                  <button
+                    onClick={() => {
+                      setImageUrls((prevUrls) => prevUrls.filter((_, i) => i !== index));
+                    }}
+                  >
+                    x
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="buttons">
             <button onClick={handlePost} disabled={isLoading}>
