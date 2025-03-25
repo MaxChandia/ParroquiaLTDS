@@ -129,7 +129,7 @@ export default function Home() {
         <div className="misasInformacionContainer">
           <h2>Misas</h2>
           <p>Martes a Sábado: 20:00</p>
-          <p>Domigos 12:00 y 20:00</p>
+          <p>Domingos 12:00 y 20:00</p>
         </div>
         <div>
           <h2>Adoración al santísimo</h2>
