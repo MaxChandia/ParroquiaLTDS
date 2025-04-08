@@ -183,7 +183,7 @@
 
 .noticiaItem {
     height: 500px;
-    max-width: 400px;
+    width: 400px;
     border: 1px solid cadetblue;
     border-radius: 10px;
     display: flex;
