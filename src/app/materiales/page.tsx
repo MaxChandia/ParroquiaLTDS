@@ -5,8 +5,6 @@ import '../../styles/materiales.css'
 
 export default function Materiales() {
   return (
-      <div className="materiales">
-        <Navbar/>
         <div className="materialesContainer" style={{height:"370px"}}>
           <h1>Materiales</h1>
           <div>

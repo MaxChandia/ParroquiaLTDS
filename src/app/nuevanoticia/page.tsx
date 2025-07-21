@@ -119,40 +119,40 @@ export default function NewEntry() {
     }
   };
 
-  const handleImageUpload = async (files: FileList) => {
-    const newImageUrls: { url: string; name: string }[] = [];
-  
-    for (const file of Array.from(files)) {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", "ml_default");
-  
-      try {
-        const response = await fetch(`https://api.cloudinary.com/v1_1/dqp4mnozy/image/upload`, {
-          method: "POST",
-          body: formData,
-        });
-  
-        if (!response.ok) {
-          throw new Error("Error al subir la imagen");
-        }
-  
-        const data = await response.json();
-        console.log("URL de la imagen subida:", data.secure_url);
-  
-        
-        newImageUrls.push({ url: data.secure_url, name: file.name });
-  
-      } catch (error) {
-        console.error("Error al cargar el archivo:", error);
-        alert("Error al cargar una imagen. Intenta nuevamente.");
-      }
-    }
-  
+    const handleImageUpload = async (files: FileList) => {
+      const newImageUrls: { url: string; name: string }[] = [];
     
-    setImageUrls((prevUrls) => [...prevUrls, ...newImageUrls]);
-  };
-  
+      for (const file of Array.from(files)) {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "ml_default");
+    
+        try {
+          const response = await fetch(`https://api.cloudinary.com/v1_1/dqp4mnozy/image/upload`, {
+            method: "POST",
+            body: formData,
+          });
+    
+          if (!response.ok) {
+            throw new Error("Error al subir la imagen");
+          }
+    
+          const data = await response.json();
+          console.log("URL de la imagen subida:", data.secure_url);
+    
+          
+          newImageUrls.push({ url: data.secure_url, name: file.name });
+    
+        } catch (error) {
+          console.error("Error al cargar el archivo:", error);
+          alert("Error al cargar una imagen. Intenta nuevamente.");
+        }
+      }
+    
+      
+      setImageUrls((prevUrls) => [...prevUrls, ...newImageUrls]);
+    };
+    
 
   if (isAuthenticating) {
     return <div>Verificando autenticación...</div>;

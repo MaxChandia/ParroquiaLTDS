@@ -154,7 +154,7 @@ export default function Home() {
           <div className="donacionLandingImage">
             <img src="/images/logo1.jpg"/>
           </div>
-        </section>
+      </section>
         <Footer/>
       </div>
   );
