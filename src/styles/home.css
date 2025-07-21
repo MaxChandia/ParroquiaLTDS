@@ -449,8 +449,8 @@
         height: auto;
         width: 100%;
         padding: 0px;
-        margin-bottom: 150px;
-        background-color: white;
+        margin-bottom: 50px;
+        background-color: white !important;
     }
 
     .noticiasList {
