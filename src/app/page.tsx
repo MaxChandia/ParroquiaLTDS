@@ -53,7 +53,7 @@ export default function Home() {
       
 
   return (
-      <div>
+      <div className="homeContainer">
         <div className={`NavbarHome ${montserrat.className}`}>
           <div className="navbarHomeLogo">
             <Link href="/">
