@@ -16,7 +16,7 @@
     justify-content: space-between;
     color: rgb(255, 255, 255);
     align-items: center;
-
+    z-index: 1000;
 }
 
 .navbarHomeLogo {
@@ -358,17 +358,22 @@
 
 @media (max-width:1024px) {
     .NavbarHome {
+        position: absolute;
         width: 100%;
+        height: auto;
         display: flex;
         justify-content: space-between;
-        
+        transition: all 0.3s ease;
     }
 
     .navbarHomeLogo{
-        font-size: 10px;
         width: auto;
         padding: 10px;
-        white-space: nowrap;
+    }
+
+      .navbarHomeLogo img{
+        height: 120px;
+        width: 250px;
     }
 
     .navbarHomeLogo p {
@@ -379,7 +384,6 @@
         margin-right: 20px;
     
     }
-
 
     .navbarHomeSections ul {
         position: absolute;
@@ -394,6 +398,11 @@
         flex-direction: column;
         margin: 0;
         align-items: center;
+        
+    }
+
+    .navbarHomeUl {
+        height: auto;
     }
 
     .navbarHomeSections li {
@@ -430,17 +439,19 @@
     }
 
     #check:checked ~ .navbarHomeUl {
-        height: 400px;
+        height: auto;
+        padding: 0 0 50px 0px;
     }
 
     .dropdownHome ul{
         display: block; 
         position: relative; 
         margin: 0; 
-        height: 100px;
+        height: auto;
         top: 0;
         width: 100%; 
-        background-color: rgb(53, 12, 143); 
+        background-color: rgba(44, 60, 120, 1); 
+        
         
       }
     
@@ -514,6 +525,11 @@
         margin-bottom: 50px;
         background-color: white !important;
     }
+    .noticiasLanding h2 {
+        font-size: 20px;
+        white-space: nowrap;
+
+    }
 
     .noticiasList {
         display: flex;
@@ -564,7 +580,6 @@
     .noticiaItem {
         height: 450px;
         width: 300px;
-        border: 1px solid cadetblue;
         border-radius: 10px;
         display: flex;
         flex-direction: column;

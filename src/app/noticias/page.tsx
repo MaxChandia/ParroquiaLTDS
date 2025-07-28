@@ -17,6 +17,7 @@ interface Noticia {
 
 export default function News() {
   const [news, setNews] = useState<Noticia[]>([]);
+  const [loading, setLoading] =useState(true)
 
   useEffect(() => {
     const handleNews = async () => {
@@ -26,6 +27,8 @@ export default function News() {
         setNews(data);
       } catch (error) {
         console.error("Hubo un error", error);
+      } finally {
+        setLoading(false)
       }
     };
     handleNews();
@@ -51,6 +54,11 @@ export default function News() {
           </p>
         </div>
         <div className="noticiasListPage">
+           {loading && (
+            <div className="loadingContainer">
+              <div className="animateSpin"></div>
+            </div>
+          )}
           {news.length > 0 ? (
             news
               .sort(
@@ -74,7 +82,7 @@ export default function News() {
                   
                 </div>
               ))
-          ) : (
+          ) : ( !loading &&
             <p>No hay noticias disponibles.</p>
           )}
         </div>

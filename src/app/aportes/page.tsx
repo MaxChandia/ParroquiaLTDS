@@ -5,7 +5,7 @@ import "../../styles/aportes.css"
 
 export default function Aportes() {
   return (
-      <div>
+      <div className="aportesContainerDiv">
         <Navbar/>
         <div className="aportesContainer ">
         <h1>Aportes</h1>
