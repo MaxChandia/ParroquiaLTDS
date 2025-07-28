@@ -334,6 +334,7 @@
     padding: 0;
     margin:  0 10px;
     z-index: 1000;
+    
    
   }
   
@@ -426,9 +427,9 @@
 
     .navLogoQuery {
         display: flex;
-        padding: 10px;
+        padding: 17px 25px;
         justify-content: space-between;
-        gap: 98px;
+        gap: 113px;
         margin-top: 37px;
         margin-left: 20px;
         white-space: nowrap;
@@ -451,6 +452,7 @@
         top: 0;
         width: 100%; 
         background-color: rgba(44, 60, 120, 1); 
+        transition: height 0.5s ease-in-out;
         
         
       }
