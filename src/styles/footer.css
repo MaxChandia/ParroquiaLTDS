@@ -9,6 +9,18 @@
     gap: 80px;
 }
 
+.socialLinksContainer {
+    display: block;
+    gap: 20px;
+}
+
+.socialLinks {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    font-size: 25px;
+}
+
 .footerContainer li {
     list-style: none; 
 }
@@ -31,6 +43,11 @@
     margin-bottom: 40px;
     font-size: 18px;
     font-weight: 500;
+    transition: background-color 0.1s ease-in-out;
+}
+
+.footerPages li:hover {
+   color: rgb(189, 135, 0);;
 }
 
 @media (max-width:1024px) {

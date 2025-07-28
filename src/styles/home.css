@@ -21,9 +21,14 @@
 
 .navbarHomeLogo {
     width: 600px;
-    padding: 45px 60px;
+    padding: 50px 60px;
     letter-spacing: 0.5px;
     margin-left: 20px;
+}
+
+.navbarHomeLogo img {
+    height: 150px;
+    width: auto;
 }
 
 .navbarHomeSubtitle {
@@ -44,6 +49,11 @@
     padding: 0 12px;
     font-size: 16px;
     font-weight: 500;
+    transition: background-color 0.1s ease-in-out;
+}
+
+ .navbarHomeSections li:hover  {
+   color: rgb(189, 135, 0);
 }
 
 .navbarHomeSections input {
@@ -141,7 +151,13 @@
     border: none;
     border-radius: 14px;
     cursor: pointer;
+    transition:  background-color 0.1s ease-in-out;
 }
+
+    .parroquiaInfo button:hover {
+    background-color:rgb(164, 118, 0) !important;
+}
+
 
 
 .noticiasLanding {
@@ -162,7 +178,27 @@
     margin-bottom: 20px;
 }
 
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
 
+.animateSpin {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #3498db; 
+    border-radius: 50%; 
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite; 
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 .noticiasLanding button {
     background-color: rgba(209, 53, 0, 1);
@@ -174,6 +210,11 @@
     border-radius: 14px;
     cursor: pointer;
     align-self: center;
+     transition: background-color 0.1s ease-in-out;
+}
+
+.noticiasLanding button:hover {
+    background-color: rgb(230, 60, 3);
 }
 
 .noticiasList {
@@ -189,15 +230,19 @@
 .noticiaItem {
     height: 500px;
     width: 400px;
-    border: 1px solid cadetblue;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
 
 }
 
+.noticiaItem:hover {
+    transform: scale(101%);
+}
 .noticiaItem h3 {
     text-align: center;
 }
@@ -222,7 +267,13 @@
     padding: 5px 15px;
     margin-bottom: 20px;
     font-size: 15px;
+    transition: background-color 0.1s ease-in-out;
 }
+
+.noticiaItem button:hover {
+    background-color:rgb(208, 149, 0) !important;
+}
+
 
 .donacionLanding {
     height: 70vh;
@@ -277,7 +328,7 @@
     top: 100%; 
     left: 0;
     width: 90%;
-    background-color: rgb(34, 72, 144); 
+    background-color: rgb(20, 53, 114); 
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
     list-style: none;
     padding: 0;
@@ -288,6 +339,10 @@
   
   .dropdown-menuHome li {
     padding: 20px 10px;
+  }
+
+  .dropdown-menuHome li a:hover {
+    color: rgb(211, 152, 1);
   }
   
   .dropdown-menuHome li a {
@@ -445,7 +500,9 @@
         top: 80%; 
         padding: 10px;
         font-size: 12px;
+        transition: background-color 0.1s ease-in-out;
     }
+
 
     .noticiasLanding {
         display: flex;

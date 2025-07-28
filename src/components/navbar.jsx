@@ -21,10 +21,9 @@ const Navbar = () => {
   return (
     <div className={`Navbar ${montserrat.className}`}>
       <div className="navbarLogo">
-        <Link href="/">
-          <p className="navbarSubtitle">Parroquia</p>
-          <p className="navbarSubtitle">La Transfiguración del Señor</p>
-        </Link>
+       <Link href="/">
+                <img src='/images/logofinal.png' alt='logo'></img>
+              </Link>
       </div>
       <div className="navbarSections">
         <input type="checkbox" id="check" />

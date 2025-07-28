@@ -15,6 +15,7 @@ const montserrat = Montserrat({
 
 export default function Home() {
   const [news, setNews] = useState<Noticia[]>([]);;
+  const [loading, setLoading] = useState(true)
   const [dropdownOpen, setDropdownOpen] = useState (false);
 
   const handleDropDown = () => {
@@ -38,6 +39,8 @@ export default function Home() {
         setNews(data);
       } catch (error) {
         console.error ("hubo un error", error);
+      } finally {
+        setLoading(false)
       }
     }; fetchData();
   }, []);
@@ -57,8 +60,7 @@ export default function Home() {
         <div className={`NavbarHome ${montserrat.className}`}>
           <div className="navbarHomeLogo">
             <Link href="/">
-                <p className="navbarHomeSubtitle">Parroquia</p>
-                <p className="navbarHomeSubtitle">La Transfiguración del Señor</p>
+                <img src='/images/logofinal.png' alt='logo'></img>
               </Link>
           <div/>
           </div>
@@ -95,6 +97,11 @@ export default function Home() {
       <section className="noticiasLanding">
           <h2>Novedades Parroquiales</h2>
           <div className="noticiasList">
+          {loading && (
+            <div className="loadingContainer">
+              <div className="animateSpin"></div>
+            </div>
+          )}
           {news.length > 0 ? (
             news
               .sort(
@@ -115,7 +122,7 @@ export default function Home() {
                   </button>
                 </div>
               ))
-            ) : (
+            ) : ( !loading &&
               <p>No hay noticias disponibles.</p>
             )}
           </div>
