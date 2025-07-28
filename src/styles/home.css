@@ -155,7 +155,7 @@
 }
 
     .parroquiaInfo button:hover {
-    background-color:rgb(164, 118, 0) !important;
+    background-color:rgb(136, 98, 2); 
 }
 
 
@@ -271,7 +271,7 @@
 }
 
 .noticiaItem button:hover {
-    background-color:rgb(208, 149, 0) !important;
+    background-color:rgb(136, 98, 2); 
 }
 
 
