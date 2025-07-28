@@ -7,12 +7,12 @@ const Footer = () => {
         <div className='footerContainer'>
             <div className='socialLinksContainer'> <Link href="/">
                 <p className="navbarSubtitle">Parroquia</p>
-                <p className="navbarSubtitle">La Transfiguración del Señor</p>
+                <p className="navbarSubtitle">La Transfiguración del Señor</p></Link>
                 <ul className='socialLinks'>
                     <li><a href="https://www.facebook.com/groups/233445130185735" target="_blank" rel="noopener noreferrer"><FaFacebook/></a></li>
                     <li><a href="https://www.instagram.com/pq_transfiguracionantofa/" target="_blank" rel="noopener noreferrer"><FaInstagram/></a></li>
                 </ul>
-                </Link>
+                
             </div>
             <div>
                 <ul className='footerContact'>

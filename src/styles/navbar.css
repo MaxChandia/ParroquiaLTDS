@@ -129,8 +129,9 @@
         white-space: nowrap;
     }
 
-    .navbarLogo p {
-        font-size: 13px;
+    .navbarLogo img {
+        height: 120px;
+        width: 250px;
     }
 
     .navbarSections {
