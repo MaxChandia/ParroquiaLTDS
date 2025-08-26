@@ -42,8 +42,6 @@
     height: auto; 
     object-fit: cover; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    background-color: white;
-    color: black;
 }
 
 
@@ -54,9 +52,10 @@
         justify-content: center;
         align-items: center;
         padding: 50px 50px;
+        background-color: white;
     }
 
-    .noticiaContainer p {
+    .noticiaContainerText p {
         margin-bottom: 10px;
         text-align: justify;
     }
@@ -66,6 +65,16 @@
     }
 
     .noticiaImagen {
-        margin: 20px 0;
+        display: block;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+
+    .noticiaImage img {
+        max-width: 100px;
+        box-shadow: none;
     }
 }

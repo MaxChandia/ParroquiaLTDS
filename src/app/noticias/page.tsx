@@ -66,7 +66,7 @@ export default function News() {
                   new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
               )
               .map((noticia) => (
-                <div className="noticiaItemPage" key={noticia.id}>
+                <Link href={`/noticias/${noticia.slug}`}><div className="noticiaItemPage" key={noticia.id}>
                   <img
                     src={noticia.imageUrls[0] || "default-image.jpg"}
                     alt={`Imagen de ${noticia.title}`}
@@ -80,7 +80,7 @@ export default function News() {
                   
                     <button><Link href={`/noticias/${noticia.slug}`}>Leer más</Link></button>
                   
-                </div>
+                </div></Link>
               ))
           ) : ( !loading &&
             <p>No hay noticias disponibles.</p>

@@ -109,7 +109,8 @@ export default function Home() {
                   new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
               )
               .slice(0, 3).map((noticia) => (
-                <div className="noticiaItem" key={noticia.id}>
+                  <Link href={`/noticias/${noticia.slug}`}><div className="noticiaItem" key={noticia.id}>
+                 
                   <img src={noticia.imageUrls[0] || 'default-image.jpg'} alt={`Imagen de ${noticia.title}`} />
                   <h3>{noticia.title}</h3>
                   <div className="NoticiasItemPageText"
@@ -120,7 +121,7 @@ export default function Home() {
                   <button>
                     <Link href={`/noticias/${noticia.slug}`}>Leer más</Link>
                   </button>
-                </div>
+                </div></Link>
               ))
             ) : ( !loading &&
               <p>No hay noticias disponibles.</p>

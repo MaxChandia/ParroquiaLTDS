@@ -6,8 +6,7 @@ const Footer = () => {
     return(
         <div className='footerContainer'>
             <div className='socialLinksContainer'> <Link href="/">
-                <p className="navbarSubtitle">Parroquia</p>
-                <p className="navbarSubtitle">La Transfiguración del Señor</p></Link>
+                <p className="navbarSubtitle">Redes Sociales</p></Link>
                 <ul className='socialLinks'>
                     <li><a href="https://www.facebook.com/groups/233445130185735" target="_blank" rel="noopener noreferrer"><FaFacebook/></a></li>
                     <li><a href="https://www.instagram.com/pq_transfiguracionantofa/" target="_blank" rel="noopener noreferrer"><FaInstagram/></a></li>
@@ -16,6 +15,7 @@ const Footer = () => {
             </div>
             <div>
                 <ul className='footerContact'>
+                    <h3>Contacto</h3>
                     <div style={{display:'flex', gap: '10px'}}>
                         <span style={{height:'20px'}}><FaPhone/></span>
                         <li> +56 552 606216</li>

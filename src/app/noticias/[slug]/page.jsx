@@ -28,7 +28,7 @@ export default async function Noticia({ params }) {
       <div className="noticiaContainer">
         <h1>{noticia.title}</h1>
         <p className='noticiaContainerDate'>Fecha: {new Date(noticia.createdAt).toLocaleDateString()}</p>
-        <div className="noticiasContainerText"dangerouslySetInnerHTML={{ __html: noticia.content }} />
+        <p className="noticiasContainerText"dangerouslySetInnerHTML={{ __html: noticia.content }} />
       </div>
       <div className="noticiaImagen">
         {noticia.imageUrls &&
