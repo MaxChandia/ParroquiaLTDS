@@ -109,23 +109,24 @@ export default function Home() {
                   new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
               )
               .slice(0, 3).map((noticia) => (
-                  <Link href={`/noticias/${noticia.slug}`}><div className="noticiaItem" key={noticia.id}>
-                 
-                  <img src={noticia.imageUrls[0] || 'default-image.jpg'} alt={`Imagen de ${noticia.title}`} />
-                  <h3>{noticia.title}</h3>
-                  <div className="NoticiasItemPageText"
-                    dangerouslySetInnerHTML={{
-                      __html: truncateHTMLContent(noticia.content, 100),
-                    }}
-                  />
-                  <button>
-                    <Link href={`/noticias/${noticia.slug}`}>Leer más</Link>
-                  </button>
-                </div></Link>
-              ))
-            ) : ( !loading &&
-              <p>No hay noticias disponibles.</p>
-            )}
+      <Link href={`/noticias/${noticia.slug}`} key={noticia.id}>
+        <div className="noticiaItem">
+          <img src={noticia.imageUrls[0] || 'default-image.jpg'} alt={`Imagen de ${noticia.title}`} />
+          <h3>{noticia.title}</h3>
+          <div className="NoticiasItemPageText"
+            dangerouslySetInnerHTML={{
+              __html: truncateHTMLContent(noticia.content, 100),
+            }}
+          />
+          <button>
+            Leer más
+          </button>
+        </div>
+      </Link>
+    ))
+) : ( !loading &&
+  <p>No hay noticias disponibles.</p>
+)}
           </div>
           <button><Link href='/noticias'>Ver más noticias</Link></button>
         </section>
