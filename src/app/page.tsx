@@ -31,18 +31,21 @@ export default function Home() {
     slug: string;
   }
 
-  useEffect(() => {
+ useEffect(() => {
     const fetchData = async() => {
       try {
         const response = await fetch("https://backend-parroquia-ug7z.onrender.com/api/posts/");
         const data = await response.json();
-        setNews(data);
+        console.log("Datos recibidos:", data); 
+        setNews(data.results); 
+
       } catch (error) {
         console.error ("hubo un error", error);
       } finally {
         setLoading(false)
       }
-    }; fetchData();
+    }; 
+    fetchData();
   }, []);
 
   const truncateHTMLContent = (html: string, maxLength: number): string => {
