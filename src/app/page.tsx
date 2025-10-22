@@ -37,7 +37,7 @@ export default function Home() {
         const response = await fetch("https://backend-parroquia-ug7z.onrender.com/api/posts/");
         const data = await response.json();
         console.log("Datos recibidos:", data); 
-        setNews(data.results); 
+        setNews(data);
 
       } catch (error) {
         console.error ("hubo un error", error);
