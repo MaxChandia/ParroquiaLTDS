@@ -26,7 +26,7 @@ export default function Home() {
     id: number;
     title: string;
     createdAt: string;
-    imageUrls: string;
+    imageUrls: string[];
     content: string;
     slug: string;
   }
