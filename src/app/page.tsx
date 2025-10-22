@@ -34,7 +34,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async() => {
       try {
-        const response = await fetch("/api/getNews");
+        const response = await fetch("https://backend-parroquia-ug7z.onrender.com/api/posts/");
         const data = await response.json();
         setNews(data);
       } catch (error) {
