@@ -1,26 +1,35 @@
 import Navbar from 'src/components/navbar';
 import Footer from 'src/components/footer';
-import { PrismaClient } from '@prisma/client';
 import "../../../styles/noticia.css";
 
-const prisma = new PrismaClient();
-
 async function fetchNoticia(slug) {
-  const noticia = await prisma.post.findUnique({
-    where: { slug: slug },
-  });
-
-  return noticia;
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/slug/${slug}`, {
+      cache: 'no-store' 
+    });
+    console.log("Respuesta de la API:", response);
+    if (!response.ok) return (
+      <div>
+        <Navbar />
+        <div className="noticiaContainer">
+          <h1>Noticia no encontrada</h1>
+          <p>La noticia que estás buscando no existe o ha sido eliminada.</p>
+        </div>
+        <Footer />
+      </div>
+    );
+    return await response.json();
+  } catch (error) {
+    console.error("Error al obtener la noticia:", error);
+    return null;
+  }
 }
 
-export default async function Noticia({ params }) {
+export default async function NoticiaPage({ params }) {
   const { slug } = params;
-
   const noticia = await fetchNoticia(slug);
 
-  if (!noticia) {
-    return <p>No se encontró la noticia.</p>;
-  }
+
 
   return (
     <div>
@@ -28,15 +37,17 @@ export default async function Noticia({ params }) {
       <div className="noticiaContainer">
         <h1>{noticia.title}</h1>
         <p className='noticiaContainerDate'>Fecha: {new Date(noticia.createdAt).toLocaleDateString()}</p>
-        <p className="noticiasContainerText"dangerouslySetInnerHTML={{ __html: noticia.content }} />
+        
+        <div className="noticiasContainerText" dangerouslySetInnerHTML={{ __html: noticia.content }} />
       </div>
+      
       <div className="noticiaImagen">
-        {noticia.imageUrls &&
-          noticia.imageUrls.map((url, index) => (
+        {noticia.images && noticia.images.length > 0 &&
+          noticia.images.map((image, index) => (
             <img
-              key={index}
-              src={url}
-              alt={`Imagen de ${noticia.title} ${index + 1}`}
+              key={image.id || index}
+              src={image.url}
+              alt={`Imagen de ${noticia.title}`}
             />
           ))}
       </div>
