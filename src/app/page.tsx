@@ -1,12 +1,11 @@
-"use client";
-
 import Link from "next/link.js";
 import Footer from "../components/footer.jsx"
 import "../styles/home.css"
 import "../styles/navbar.css"
 import { Montserrat } from 'next/font/google';
 import { FaBars } from 'react-icons/fa';
-import { useState, useEffect } from "react";
+import NewsContainer from "../components/newsContainer/newsContainer.jsx";
+import NewsGrid from "@/components/newsGrid/newsGrid";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -14,48 +13,6 @@ const montserrat = Montserrat({
 });
 
 export default function Home() {
-  const [news, setNews] = useState<Noticia[]>([]);;
-  const [loading, setLoading] = useState(true)
-  const [dropdownOpen, setDropdownOpen] = useState (false);
-
-  const handleDropDown = () => {
-    setDropdownOpen((prev) => !prev)
-  }
-
-  interface Noticia {
-    id: number;
-    title: string;
-    createdAt: string;
-    imageUrls: string[];
-    content: string;
-    slug: string;
-  }
-
- useEffect(() => {
-    const fetchData = async() => {
-      try {
-        const response = await fetch("/api/getNews");
-        const data = await response.json();
-        console.log("Datos recibidos:", data); 
-        setNews(data);
-
-      } catch (error) {
-        console.error ("hubo un error", error);
-      } finally {
-        setLoading(false)
-      }
-    }; 
-    fetchData();
-  }, []);
-
-  const truncateHTMLContent = (html: string, maxLength: number): string => {
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = html;
-    const textContent = tempDiv.textContent || tempDiv.innerText || "";
-    return textContent.length > maxLength
-      ? textContent.slice(0, maxLength) + "..."
-      : textContent;
-  };
       
 
   return (
@@ -80,9 +37,9 @@ export default function Home() {
               <label htmlFor="check" className="iconsHomeNav"> <FaBars /></label>
             </div>
               <li><Link href="/">INICIO</Link></li>
-              <li className="dropdownHome" onClick={handleDropDown}>
+              <li className="dropdownHome">
                   NUESTRA PARROQUIA ▾
-               <ul className="dropdown-menuHome" style={{display: dropdownOpen ? "block" : "none"}}>
+               <ul className="dropdown-menuHome">
                   <li><Link href="/nuestraparroquia">COMUNIDAD</Link></li>
                   <li> <Link href="/nuestraparroquia/pastores">PASTORES</Link></li>      
                 </ul>
@@ -99,38 +56,7 @@ export default function Home() {
       </div>
       <section className="noticiasLanding">
           <h2>Novedades Parroquiales</h2>
-          <div className="noticiasList">
-          {loading && (
-            <div className="loadingContainer">
-              <div className="animateSpin"></div>
-            </div>
-          )}
-          {news.length > 0 ? (
-            news
-              .sort(
-                (a, b) =>
-                  new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-              )
-              .slice(0, 3).map((noticia) => (
-      <Link href={`/noticias/${noticia.slug}`} key={noticia.id}>
-        <div className="noticiaItem">
-          <img src={noticia.imageUrls[0] || 'default-image.jpg'} alt={`Imagen de ${noticia.title}`} />
-          <h3>{noticia.title}</h3>
-          <div className="NoticiasItemPageText"
-            dangerouslySetInnerHTML={{
-              __html: truncateHTMLContent(noticia.content, 100),
-            }}
-          />
-          <button>
-            Leer más
-          </button>
-        </div>
-      </Link>
-    ))
-) : ( !loading &&
-  <p>No hay noticias disponibles.</p>
-)}
-          </div>
+          <NewsGrid limit={3}/>
           <button><Link href='/noticias'>Ver más noticias</Link></button>
         </section>
       <section className="parroquiaInfo">
