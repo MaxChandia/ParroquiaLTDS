@@ -10,34 +10,44 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  function handleLogin() {
-    if (!user || !password) {
-      alert("Por favor, complete todos los campos");
-      return;
-    }
 
+  const handleLogin = async () => {
+    if (!user || !password) {
+      alert("Por favor, ingresa tu cuenta y contraseña.");
+      return;
+    } 
     setLoading(true);
-    fetch("/api/loginUser", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user, password }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setLoading(false);
-        if (data.user) {
-          localStorage.setItem("token", data.token); 
+    
+
+    try {
+      console.log("Mi variable de entorno es:", process.env.NEXT_PUBLIC_API_URL);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: user, password }),
+      });
+
+      if (!response.ok) { 
+        
+          throw new Error("Credenciales inválidas. Por favor, inténtalo de nuevo.");
+        }
+
+        const data = await response.json();
+
+        if (data.access_token) {
+          localStorage.setItem("token", data.access_token);
           router.push("/nuevanoticia");
         } else {
-          alert("Credenciales incorrectas");
+          throw new Error("Respuesta del servidor no contiene token");
         }
-      })
-      .catch((error) => {
-        setLoading(false);
-        console.error("Error en el login:", error);
-        alert("Hubo un problema con el servidor. Intente nuevamente más tarde.");
-      });
-  }
+    } catch (error) {
+      alert("Cuenta o contraseña incorrecta. Por favor, inténtalo de nuevo.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="loginPage">
