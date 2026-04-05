@@ -6,15 +6,9 @@ import "../../styles/nuevanoticia.css";
 import { Editor } from "@tinymce/tinymce-react";
 import Navbar from "src/components/navbar";
 import Footer from "src/components/footer";
+import { Noticia } from "./noticiaModel";
+import { createPost, deletePost, getNewsService } from "./nuevanoticia.service";
 
-interface Noticia {
-  id: string;
-  title: string;
-  createdAt: string;
-  content: string;
-  slug: string;
-  imageUrls: string;
-}
 
 export default function NewEntry() {
   const [title, setTitle] = useState("");
@@ -23,7 +17,8 @@ export default function NewEntry() {
   const [getNews, setGetNews] = useState<Noticia[]>([]);
   const [imageUrls, setImageUrls] = useState<{ url: string; name: string }[]>([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false); 
-  const [isAuthenticating, setIsAuthenticating] = useState(true); 
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const router = useRouter();
 
   const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
@@ -49,68 +44,62 @@ export default function NewEntry() {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); 
   };
   
-  const handlePost = async () => {
+const handlePost = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Tu sesión ha expirado. Por favor, vuelve a ingresar.");
+      return;
+    }
+
     setIsLoading(true);
     const cleanedBody = cleanHtml(body);
-    const cleanedTitle = removeDiacritics(title.toLowerCase().replace(/ /g, "-")); 
-    const imageUrlsOnly = imageUrls.map((image) => image.url);
     
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", cleanedBody);
+    formData.append("authorId", "1"); 
+    
+    if (selectedFile) {
+      formData.append("file", selectedFile);
+    }
+
     try {
-      const response = await fetch("/api/posts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          slug: cleanedTitle,
-          content: cleanedBody,
-          imageUrls: imageUrlsOnly, 
-          authorId: "64bfcdd1f4f29b1234567890",
-        }),
-      });
-  
-      if (!response.ok) {
-        throw new Error("Error al publicar el post");
-      }
-  
-      const data = await response.json();
-      console.log("Post creado con éxito:", data);
+      await createPost(formData, token);
+      
       alert("Post publicado correctamente");
+      
     } catch (error) {
-      console.error(error);
-      alert("Error al publicar el post");
+     if (error instanceof Error) {
+        alert(error.message); 
+      } else {
+        alert("Hubo un problema al publicar el post. Intenta nuevamente.");
+      }
     } finally {
       setIsLoading(false);
       setTitle("");
       setBody("");
-      setImageUrls([]);
+      setSelectedFile(null); 
     }
   };
   
   useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const response = await fetch("/api/getNews");
-        const data = await response.json();
-        setGetNews(data);
-      } catch (error) {
-        console.error("Hubo un error", error);
-      }
-    };
-    fetchPost();
+    getNewsService()
+    .then((news) => setGetNews(news))
+    .catch((error) => {
+      console.error("Error al obtener las noticias:", error);
+      alert("Error al obtener las noticias");
+    })
   }, []);
 
   const handleDelete = async (id: string) => {
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("No estás autenticado. Por favor, inicia sesión.");
+      return;
+    }
     try {
-      const response = await fetch(`/api/posts/${id}`, {
-        method: "DELETE",
-      });
-
-      if (!response.ok) {
-        throw new Error("No se pudo eliminar la publicación");
-      }
-
+     await deletePost(id, token);
       setGetNews((prevNews) => prevNews.filter((noticia) => noticia.id !== id));
       alert("Noticia eliminada correctamente");
     } catch (error) {
@@ -119,39 +108,7 @@ export default function NewEntry() {
     }
   };
 
-    const handleImageUpload = async (files: FileList) => {
-      const newImageUrls: { url: string; name: string }[] = [];
-    
-      for (const file of Array.from(files)) {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("upload_preset", "ml_default");
-    
-        try {
-          const response = await fetch(`https://api.cloudinary.com/v1_1/dqp4mnozy/image/upload`, {
-            method: "POST",
-            body: formData,
-          });
-    
-          if (!response.ok) {
-            throw new Error("Error al subir la imagen");
-          }
-    
-          const data = await response.json();
-          console.log("URL de la imagen subida:", data.secure_url);
-    
-          
-          newImageUrls.push({ url: data.secure_url, name: file.name });
-    
-        } catch (error) {
-          console.error("Error al cargar el archivo:", error);
-          alert("Error al cargar una imagen. Intenta nuevamente.");
-        }
-      }
-    
-      
-      setImageUrls((prevUrls) => [...prevUrls, ...newImageUrls]);
-    };
+  
     
 
   if (isAuthenticating) {
@@ -199,32 +156,24 @@ export default function NewEntry() {
                 `,
               }}
             />
-           <input
+         <input
               type="file"
               accept="image/*"
-              multiple
               onChange={(e) => {
                 const files = e.target.files;
-                if (files) {
-                  handleImageUpload(files);
+                if (files && files.length > 0) {
+                  setSelectedFile(files[0]); 
                 }
               }}
             />
-
-            <div className="uploadedImages">
-              {imageUrls.map((image, index) => (
-                <div key={index} className="uploadedImage">
-                  <span>{image.name}</span>
-                  <button
-                    onClick={() => {
-                      setImageUrls((prevUrls) => prevUrls.filter((_, i) => i !== index));
-                    }}
-                  >
-                    x
-                  </button>
-                </div>
-              ))}
-            </div>
+          <div className="uploadedImages">
+            {selectedFile && (
+              <div className="uploadedImage">
+                <span>{selectedFile.name}</span>
+                <button onClick={() => setSelectedFile(null)}>x</button>
+              </div>
+            )}
+          </div>
           </div>
           <div className="buttons">
             <button onClick={handlePost} disabled={isLoading}>
