@@ -4,7 +4,6 @@ import "../styles/home.css"
 import "../styles/navbar.css"
 import { Montserrat } from 'next/font/google';
 import { FaBars } from 'react-icons/fa';
-import NewsContainer from "../components/newsContainer/newsContainer.jsx";
 import NewsGrid from "@/components/newsGrid/newsGrid";
 
 const montserrat = Montserrat({
