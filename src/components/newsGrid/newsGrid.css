@@ -1,0 +1,75 @@
+.gridNoticias {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    justify-content: center;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.tarjetaNoticia {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease-in-out;
+    text-decoration: none; /* Quita el subrayado del link */
+    color: inherit;
+    height: 100%;
+    width: 400px;
+}
+
+.tarjetaNoticia:hover {
+    transform: scale(102%);
+}
+
+.tarjetaNoticia img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+
+}
+
+.tarjetaContenido {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+.tarjetaContenido h3 {
+    font-size: 1.2rem;
+    margin: 0;
+    color: black;
+}
+
+.tarjetaTexto {
+    font-size: 12px;
+    text-align: justify;
+    padding: 0 10px;
+    color: black;
+}
+
+.tarjetaContenido button {
+    background-color: rgba(185, 134, 3, 1);
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    transition: background-color 0.2s;
+    margin-top: auto; /* Empuja el botón siempre hacia abajo */
+}
+
+.tarjetaContenido button:hover {
+    background-color: rgb(136, 98, 2);
+}
