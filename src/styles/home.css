@@ -49,11 +49,13 @@
     padding: 0 12px;
     font-size: 16px;
     font-weight: 500;
-    transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
 }
 
  .navbarHomeSections li:hover  {
    color: rgb(189, 135, 0);
+   transition: color 0.2s ease-in-out;
+
 }
 
 .navbarHomeSections input {
@@ -158,6 +160,64 @@
     background-color:rgb(136, 98, 2); 
 }
 
+.dropdownHome {
+    position: relative;
+    cursor: pointer;
+  }
+
+.dropdownHome ul{
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute; 
+    margin: 0; 
+    height: auto;
+    top: 100%;
+    width: 100%; 
+    background-color: rgba(44, 60, 120, 1);
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease-out, transform 0.5s ease-out, visibility 0.5s ease-out;
+    
+    
+  }
+
+  .dropdownHome:hover ul {
+    opacity: 1 ;
+    visibility: visible;
+    transform: translateY(0);
+
+  }
+  
+  .dropdown-menuHome {
+    display: none;
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    width: 90%;
+    background-color: rgb(20, 53, 114); 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    list-style: none;
+    padding: 0;
+    margin:  0 10px;
+    z-index: 1000;
+    
+   
+  }
+  
+  .dropdown-menuHome li {
+    padding: 20px 10px;
+  }
+
+  .dropdown-menuHome li a:hover {
+    color: rgb(211, 152, 1);
+  }
+  
+  .dropdown-menuHome li a {
+    color: #ffffff;
+    font-weight: 400;
+    text-decoration: none;
+    display: block;
+}
 
 
 .noticiasLanding {
@@ -203,6 +263,7 @@
 .noticiasLanding button {
     background-color: rgba(209, 53, 0, 1);
     color: white;
+    margin: 50px 0px;
     padding: 10px 20px;
     font-size: 18px;
     font-family: "Montserrat";
@@ -210,7 +271,7 @@
     border-radius: 14px;
     cursor: pointer;
     align-self: center;
-     transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
 }
 
 .noticiasLanding button:hover {
