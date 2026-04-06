@@ -1,5 +1,6 @@
 import Navbar from 'src/components/navbar';
 import Footer from 'src/components/footer';
+import Image from 'next/image';
 import "../../../styles/noticia.css";
 
 async function fetchNoticia(slug) {
@@ -44,7 +45,7 @@ export default async function NoticiaPage({ params }) {
       <div className="noticiaImagen">
         {noticia.images && noticia.images.length > 0 &&
           noticia.images.map((image, index) => (
-            <img
+            <Image
               key={image.id || index}
               src={image.url}
               alt={`Imagen de ${noticia.title}`}
