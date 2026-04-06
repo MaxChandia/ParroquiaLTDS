@@ -43,7 +43,7 @@ export default function Login() {
           throw new Error("Respuesta del servidor no contiene token");
         }
     } catch (error) {
-      alert("Cuenta o contraseña incorrecta. Por favor, inténtalo de nuevo.");
+      console.error("Error durante el login:", error);
     } finally {
       setLoading(false);
     }
