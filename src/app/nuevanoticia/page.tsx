@@ -39,9 +39,6 @@ export default function NewEntry() {
       .replace(/\s?dir="ltr"/g, ""); 
   };
 
-  const removeDiacritics = (str: string): string => {
-    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); 
-  };
   
 const handlePost = async () => {
     const token = localStorage.getItem("token");
