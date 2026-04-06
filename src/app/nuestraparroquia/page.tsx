@@ -1,6 +1,7 @@
 import Navbar from "src/components/navbar.jsx";
 import Footer from "src/components/footer";
 import Link from "next/link";
+import Image from "next/image";
 import '../../styles/parroquia.css';
 
 
@@ -24,7 +25,7 @@ export default function Parroquia() {
           <p><b>Hay espacio para todos en la casa de Dios</b></p>
           <div className="parroquiaFotos">
             {Slides.map((slide)=>(
-              <img key={slide.id} src={slide.src} alt={slide.alt}/>
+              <Image key={slide.id} src={slide.src} alt={slide.alt}/>
             ))}
           </div>
         </div>

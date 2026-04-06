@@ -1,6 +1,7 @@
 import Navbar from "src/components/navbar";
 import Footer from "src/components/footer";
 import Link from "next/link";
+import Image from "next/image";
 import "../../../styles/autoridades.css";
 
 export default function AutoridadesParroquiales () {
@@ -15,25 +16,25 @@ export default function AutoridadesParroquiales () {
             </div>
             <div className="autoridadesParroquiales">
                 <div className="autoridadesCard">
-                    <img src="/images/arzobispo.jpg"/>
+                    <Image src="/images/arzobispo.jpg" alt="Arzobispo" />
                     <h4>Mons. Ignacio Ducasse</h4>
                     <p>Arzobispo</p>
                     <p>iducasse@iglesia.cl</p>
                 </div>
                 <div className="autoridadesCard">
-                    <img src="/images/padrefrancisco.jpg"/>
+                    <Image src="/images/padrefrancisco.jpg" alt="Pbro. Francisco Álvarez" />
                     <h4>Pbro. Francisco Álvarez </h4>
                     <p>Párroco</p>
                     <p>francisco.alvarez.bravo@gmail.com</p>
                 </div>
                 <div className="autoridadesCard">
-                    <img src="/images/diacclaudio.jpg"/>
+                    <Image src="/images/diacclaudio.jpg" alt="Diácono Claudio Pérez" />
                     <h4>Diácono Claudio Pérez</h4>
                     <p>Diácono</p>
                     <p>diaconoclaudioantof@gmail.com</p>
                 </div>
                 <div className="autoridadesCard">
-                    <img src="/images/diacrodolfo.jpg"/>
+                    <Image src="/images/diacrodolfo.jpg" alt="Diácono Rodolfo Henríquez" />
                     <h4>Diácono Rodolfo Henríquez</h4>
                     <p>Diácono</p>
                     <p>rohenze@gmail.com</p>
