@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -19,7 +19,6 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@material/card": "^14.0.0",
     "@mui/material": "^7.3.9",
-    "@prisma/client": "^6.0.1",
     "@tinymce/tinymce-react": "^5.1.1",
     "babel-polyfill": "^6.26.0",
     "draft-js": "^0.11.7",
@@ -47,7 +46,6 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
-    "prisma": "^6.0.1",
     "typescript": "^5"
   }
 }
