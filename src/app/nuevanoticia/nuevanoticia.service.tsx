@@ -1,4 +1,3 @@
-import type { Noticia } from "./noticiaModel";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 

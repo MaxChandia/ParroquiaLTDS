@@ -15,7 +15,6 @@ export default function NewEntry() {
   const [body, setBody] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [getNews, setGetNews] = useState<Noticia[]>([]);
-  const [imageUrls, setImageUrls] = useState<{ url: string; name: string }[]>([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false); 
   const [isAuthenticating, setIsAuthenticating] = useState(true);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
