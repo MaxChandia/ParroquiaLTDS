@@ -1,12 +1,11 @@
 import Link from "next/link";
 import "../newsGrid/newsGrid.css";
-import { Noticia, NoticiaImages } from "@/app/nuevanoticia/noticiaModel";
+import { Noticia } from "@/app/nuevanoticia/noticiaModel";
 
-// Buscamos los datos directamente en el servidor
 async function fetchNoticias() {
   try {
     const response = await fetch("https://etjsmpnny3.us-east-1.awsapprunner.com/api/post", {
-      cache: 'no-store' // Para que siempre traiga las noticias más recientes
+      cache: 'no-store' 
     });
     if (!response.ok) return [];
     return await response.json();
@@ -16,16 +15,15 @@ async function fetchNoticias() {
   }
 }
 
-// Recibe un "limit" opcional para saber cuántas mostrar
 export default async function NoticiasGrid({ limit }: { limit?: number }) {
   const noticias = await fetchNoticias();
 
-  // Ordenamos por fecha
+  
   const sortedNews = noticias.sort(
     (a: Noticia, b: Noticia) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
 
-  // Si le pasamos un límite (ej: 3 para el home), lo recorta. Si no, muestra todas.
+
   const displayedNews = limit ? sortedNews.slice(0, limit) : sortedNews;
 
   const getImageUrls = (images: string[]) => {
