@@ -1,6 +1,8 @@
+import React from 'react';
 import Navbar from "src/components/navbar.jsx";
 import Footer from "src/components/footer";
 import Link from "next/link";
+import Image from "next/image";
 import '../../styles/materiales.css'
 
 export default function Materiales() {
@@ -21,7 +23,7 @@ export default function Materiales() {
       <div className="materialesSection">
         <div className="section">
           <div className="imageSection">
-            <img src="/images/biblia.jpg" alt="Description 1" />
+            <Image src="/images/biblia.jpg" alt="Description 1" />
           </div>
           <div className="descriptionSection">
             <h2>Biblia de Jerusalen </h2>
@@ -41,13 +43,13 @@ export default function Materiales() {
             <a href="/docs/Catecismo para nihos - Jose Maria Palomar Garces.pdf" className="materialButton">Descargar</a>
           </div>
           <div className="imageSection">
-            <img src="/images/catequesis.jpg" alt="Description 2" />
+            <Image src="/images/catequesis.jpg" alt="Description 2" />
           </div>
         </div>
 
         <div className="section">
           <div className="imageSection">
-            <img src="/images/lib.png" alt="Description 1" />
+            <Image src="/images/lib.png" alt="Description 1" />
           </div>
           <div className="descriptionSection">
             <h2>Derecho canónico </h2>
@@ -67,7 +69,7 @@ export default function Materiales() {
             <a href="/docs/Documento_Conclusivo_Aparecida" className="materialButton">Descargar</a>
           </div>
           <div className="imageSection">
-            <img src="/images/dda.jpg" alt="Description 1" />
+            <Image src="/images/dda.jpg" alt="Description 1" />
           </div>
         </div>
       </div>
