@@ -1,6 +1,7 @@
 import Navbar from "src/components/navbar.jsx";
 import Footer from "src/components/footer";
 import Link from "next/link";
+import Image from "next/image";
 import "../../styles/aportes.css"
 
 export default function Aportes() {
@@ -14,7 +15,7 @@ export default function Aportes() {
           </div>
         </div>
           <div className="aportesContainerImage">
-            <img src="/images/misa.jpg"/>
+            <Image src="/images/misa.jpg" alt="aportes-misa-image"/>
             <div className="aportesDetalles">
               <h2>La caridad de Cristo</h2>
               <p>Tu aporte nos ayuda a seguir creciendo</p>
