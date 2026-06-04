@@ -15,7 +15,7 @@ export default function Aportes() {
           </div>
         </div>
           <div className="aportesContainerImage">
-            <Image src="/images/misa.jpg" alt="aportes-misa-image"/>
+            <Image src="/images/misa.jpg" alt="aportes-misa-image" width={800} height={200} />
             <div className="aportesDetalles">
               <h2>La caridad de Cristo</h2>
               <p>Tu aporte nos ayuda a seguir creciendo</p>

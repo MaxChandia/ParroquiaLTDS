@@ -23,7 +23,7 @@ export default function Materiales() {
       <div className="materialesSection">
         <div className="section">
           <div className="imageSection">
-            <Image src="/images/biblia.jpg" alt="Description 1" />
+            <Image src="/images/biblia.jpg" alt="Biblia de Jerusalen" width={300} height={200} />
           </div>
           <div className="descriptionSection">
             <h2>Biblia de Jerusalen </h2>
@@ -43,13 +43,13 @@ export default function Materiales() {
             <a href="/docs/Catecismo para nihos - Jose Maria Palomar Garces.pdf" className="materialButton">Descargar</a>
           </div>
           <div className="imageSection">
-            <Image src="/images/catequesis.jpg" alt="Description 2" />
+            <Image src="/images/catequesis.jpg" alt="Catequesis para niños" width={300} height={200} />
           </div>
         </div>
 
         <div className="section">
           <div className="imageSection">
-            <Image src="/images/lib.png" alt="Description 1" />
+            <Image src="/images/lib.png" alt="Libro de Derecho Canónico" width={300} height={200} />
           </div>
           <div className="descriptionSection">
             <h2>Derecho canónico </h2>
@@ -69,7 +69,7 @@ export default function Materiales() {
             <a href="/docs/Documento_Conclusivo_Aparecida" className="materialButton">Descargar</a>
           </div>
           <div className="imageSection">
-            <Image src="/images/dda.jpg" alt="Description 1" />
+            <Image src="/images/dda.jpg" alt="Documento de Aparecida" width={300} height={200} />
           </div>
         </div>
       </div>

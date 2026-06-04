@@ -25,7 +25,7 @@ export default function Parroquia() {
           <p><b>Hay espacio para todos en la casa de Dios</b></p>
           <div className="parroquiaFotos">
             {Slides.map((slide)=>(
-              <Image key={slide.id} src={slide.src} alt={slide.alt}/>
+              <Image key={slide.id} src={slide.src} alt={slide.alt} width={300} height={200} />
             ))}
           </div>
         </div>

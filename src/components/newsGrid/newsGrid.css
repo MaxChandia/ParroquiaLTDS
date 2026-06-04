@@ -1,6 +1,6 @@
 .gridNoticias {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     justify-content: center;
     width: 100%;
@@ -17,10 +17,10 @@
     flex-direction: column;
     align-items: center;
     transition: transform 0.2s ease-in-out;
-    text-decoration: none; /* Quita el subrayado del link */
+    text-decoration: none; 
     color: inherit;
     height: 100%;
-    width: 400px;
+    width:  100%;
 }
 
 .tarjetaNoticia:hover {
@@ -72,4 +72,13 @@
 
 .tarjetaContenido button:hover {
     background-color: rgb(136, 98, 2);
+}
+
+.errorNews {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 20px;
 }

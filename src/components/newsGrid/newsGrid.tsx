@@ -4,11 +4,14 @@ import { Noticia } from "@/app/nuevanoticia/noticiaModel";
 
 async function fetchNoticias() {
   try {
-    const response = await fetch("https://etjsmpnny3.us-east-1.awsapprunner.com/api/post", {
+    const apiUrl = process.env.MONGO
+    const response = await fetch(`${apiUrl}/posts`, {
       cache: 'no-store' 
     });
     if (!response.ok) return [];
-    return await response.json();
+    const noticias = await response.json();
+    console.log("Noticias obtenidas:", noticias);
+    return noticias;
   } catch (error) {
     console.error("Error trayendo las noticias:", error);
     return [];
@@ -48,7 +51,9 @@ export default async function NoticiasGrid({ limit }: { limit?: number }) {
           </Link>
         ))
       ) : (
-        <p>No hay noticias disponibles.</p>
+        <div className="errorNews">
+          <p>No hay noticias disponibles.</p>
+        </div>
       )}
     </div>
   );

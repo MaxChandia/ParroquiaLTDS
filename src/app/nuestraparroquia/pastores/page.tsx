@@ -16,25 +16,25 @@ export default function AutoridadesParroquiales () {
             </div>
             <div className="autoridadesParroquiales">
                 <div className="autoridadesCard">
-                    <Image src="/images/arzobispo.jpg" alt="Arzobispo" />
+                    <Image src="/images/arzobispo.jpg" alt="Arzobispo" width={300} height={200} />
                     <h4>Mons. Ignacio Ducasse</h4>
                     <p>Arzobispo</p>
                     <p>iducasse@iglesia.cl</p>
                 </div>
                 <div className="autoridadesCard">
-                    <Image src="/images/padrefrancisco.jpg" alt="Pbro. Francisco Álvarez" />
+                    <Image src="/images/padrefrancisco.jpg" alt="Pbro. Francisco Álvarez" width={300} height={200} />
                     <h4>Pbro. Francisco Álvarez </h4>
                     <p>Párroco</p>
                     <p>francisco.alvarez.bravo@gmail.com</p>
                 </div>
                 <div className="autoridadesCard">
-                    <Image src="/images/diacclaudio.jpg" alt="Diácono Claudio Pérez" />
+                    <Image src="/images/diacclaudio.jpg" alt="Diácono Claudio Pérez" width={300} height={200} />
                     <h4>Diácono Claudio Pérez</h4>
                     <p>Diácono</p>
                     <p>diaconoclaudioantof@gmail.com</p>
                 </div>
                 <div className="autoridadesCard">
-                    <Image src="/images/diacrodolfo.jpg" alt="Diácono Rodolfo Henríquez" />
+                    <Image src="/images/diacrodolfo.jpg" alt="Diácono Rodolfo Henríquez" width={300} height={200} />
                     <h4>Diácono Rodolfo Henríquez</h4>
                     <p>Diácono</p>
                     <p>rohenze@gmail.com</p>
